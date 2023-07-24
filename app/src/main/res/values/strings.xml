@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MEC</string>
+
+
+    //Name of items in menu
+    <string name="main_item_menu">Главная</string>
+    <string name="services_item_menu">Услуги</string>
+    <string name="requests_item_menu">Заявки</string>
+    <string name="chat_item_menu">Чат</string>
+    <string name="news_item_menu">Новости</string>
+
+
+</resources>
