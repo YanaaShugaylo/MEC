@@ -35,7 +35,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        signingConfig = signingConfigs.getByName("release")
+        //signingConfig = signingConfigs.getByName("release") // todo спросить
     }
 
     buildTypes {
