@@ -1,4 +1,7 @@
 package pro.midev.mec.data.di
 
-class LocalDbModule {
+import org.koin.dsl.module
+
+val localDbModule = module {
+    // todo БД
 }
