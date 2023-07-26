@@ -1,0 +1,155 @@
+[versions]
+
+minSdk = "24"
+compileSdk = "33"
+targetSdk = "33"
+
+androidGradlePlugin = "7.4.2"
+androidDesugaring = "1.2.2"
+androidxActivity = "1.6.1"
+androidxAppCompat = "1.5.1"
+androidxCompose = "1.4.0"
+androidxComposeCompiler = "1.3.2"
+androidxCore = "1.9.0"
+androidxCoreSplashscreen = "1.0.0"
+androidxEspresso = "3.5.0"
+androidxLifecycle = "2.6.0-alpha03"
+androidxWindowManager = "1.0.0"
+androidxTestCore = "1.5.0"
+androidxTestExt = "1.1.5"
+androidxTestRunner = "1.4.0"
+androidxTestRules = "1.5.0"
+coil = "2.2.2"
+detekt = "1.22.0"
+googleService = "4.3.13"
+firebaseAnalytics = "21.2.0"
+firebaseCrashlytics = "18.3.2"
+firebasePref = "20.2.0"
+firebaseRemoteConfig = "21.2.0"
+junit4 = "4.13.2"
+junit5 = "5.8.2"
+koin = "3.3.0"
+kotlin = "1.7.20"
+kotlinxCoroutines = "1.6.4"
+kotlinxDatetime = "0.4.0"
+kotlinxImmutable = "0.3.5"
+kotlinxSerializationJson = "1.4.1"
+mockito = "5.1.1"
+okhttp = "4.10.0"
+retrofit = "2.9.0"
+gson = "2.10.1"
+secrets = "2.0.1"
+timber = "5.0.1"
+voyager = "1.0.0-rc02"
+mmkv = "1.2.15"
+room = "2.5.1"
+truth = "1.1.3"
+arch = "2.1.0"
+junitPlatform = "1.9.2"
+mannodermaus = "1.3.0"
+shimmer = "1.0.4"
+biometric = "1.2.0-alpha05"
+
+[libraries]
+androidDesugaring = {group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugaring"}
+
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
+androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+
+androidx-compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "androidxCompose" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxCompose" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "androidxCompose" }
+androidx-compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "androidxCompose" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "androidxCompose" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "androidxCompose" }
+androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidxCompose" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidxCompose" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "androidxCompose" }
+androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "androidxCompose" }
+
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
+androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
+
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
+androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidxTestRules" }
+
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+coil-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-perf", version.ref = "firebasePref" }
+firebase-perf = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
+firebase-remote-config = { group = "com.google.firebase", name = "firebase-config-ktx", version.ref = "firebaseRemoteConfig" }
+
+koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutines" }
+
+kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinxImmutable" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+
+retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-conventer-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
+test-junit5 = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit5" }
+test-junit5-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher", version.ref = "junitPlatform" }
+test-junit5-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlin" }
+test-junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+test-junit-vintage = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junit5" }
+test-mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+test-mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockito" }
+test-truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+test-arch-core = { group = "androidx.arch.core", name = "core-testing", version.ref = "arch" }
+test-mannodermaus-core = { group = "de.mannodermaus.junit5", name = "android-test-core", version.ref = "mannodermaus" }
+test-mannodermaus-runner = { group = "de.mannodermaus.junit5", name = "android-test-runner", version.ref = "mannodermaus" }
+
+voyager-core = { group = "cafe.adriel.voyager", name = "voyager-navigator", version.ref = "voyager" }
+voyager-bs = { group = "cafe.adriel.voyager", name = "voyager-bottom-sheet-navigator", version.ref = "voyager" }
+voyager-tab = { group = "cafe.adriel.voyager", name = "voyager-tab-navigator", version.ref = "voyager" }
+voyager-koin = { group = "cafe.adriel.voyager", name = "voyager-koin", version.ref = "voyager" }
+voyager-androidx = { group = "cafe.adriel.voyager", name = "voyager-androidx", version.ref = "voyager" }
+voyager-transitions = { group = "cafe.adriel.voyager", name = "voyager-transitions", version.ref = "voyager" }
+
+mmkv = { group = "com.tencent", name = "mmkv", version.ref = "mmkv" }
+
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
+
+shimmer = { group = "com.valentinilk.shimmer", name = "compose-shimmer", version.ref = "shimmer" }
+
+biometric = { group = "androidx.biometric", name = "biometric", version.ref = "biometric" }
+
+[bundles]
+test-unit = ["test-mockito", "test-junit4", "test-junit5", "test-junit5-kotlin", "test-arch-core", "test-truth", "room-testing", "test-junit5-platform-launcher", "test-mannodermaus-core"]
+test-android = ["test-mockito-android", "androidx-test-ext", "androidx-test-espresso-core", "androidx-test-rules", "kotlinx-coroutines-test", "androidx-test-runner"]
+voyager = ["voyager-core", "voyager-tab", "voyager-koin", "voyager-androidx", "voyager-transitions"]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+google-service = { id = "com.google.gms.google-services", version.ref = "googleService" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
