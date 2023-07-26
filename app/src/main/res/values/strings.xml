@@ -10,4 +10,9 @@
     <string name="news_item_menu">Новости</string>
 
 
+    <string name="error_no_connectivity">Нет соединения с интернетом</string>
+    <string name="error_server">Ошибка сервера</string>
+    <string name="error_unauthorized">Ошибка авторизации</string>
+    <string name="error_undefined">Неизвестная ошибка</string>
+
 </resources>

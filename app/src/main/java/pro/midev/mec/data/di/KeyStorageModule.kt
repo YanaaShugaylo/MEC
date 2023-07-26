@@ -3,6 +3,7 @@ package pro.midev.mec.data.di
 import com.tencent.mmkv.MMKV
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
+import pro.midev.mec.data.local.keystorage.UserKeyStorage
 
 val keyStorageModule = module {
 
@@ -11,5 +12,7 @@ val keyStorageModule = module {
         MMKV.defaultMMKV()
     }
 
-    // todo
+    single {
+        UserKeyStorage(get())
+    }
 }
