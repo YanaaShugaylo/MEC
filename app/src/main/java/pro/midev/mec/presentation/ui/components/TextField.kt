@@ -11,7 +11,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -50,13 +53,17 @@ fun TextFieldInput(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     singleLine: Boolean = false,
     isError: Boolean = false,
+    minHeight: Int = 55
 ) {
     val hasFocus = remember { mutableStateOf(false) }
 
-    Column(verticalArrangement = Arrangement.Top) {
+    Column() {
 
         Column(
+            verticalArrangement = Arrangement.Center,
             modifier = Modifier
+                .height(56.dp)
+                .fillMaxWidth()
                 .background(
                     color = MecTheme.colors.white
                 )
@@ -73,7 +80,6 @@ fun TextFieldInput(
             label?.let {
                 Text(
                     text = it,
-                    modifier = Modifier.padding(top = 11.dp),
                     style = MecTheme.typography.overline.regular,
                     color = when {
                         isError -> MecTheme.colors.accent_primary
@@ -84,11 +90,7 @@ fun TextFieldInput(
             }
 
             Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(
-                    bottom = if (label == null) 18.dp else 11.dp,
-                    top = if (label == null) 18.dp else 0.dp
-                )
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 MecBaseInput(
                     modifier = Modifier
@@ -106,13 +108,16 @@ fun TextFieldInput(
                     keyboardOptions = keyboardOptions
                 )
 
+
+
+
                 iconEnd?.let { res ->
 
                     Spacer(
                         modifier = Modifier.width(4.dp)
                     )
 
-                    IconButton(onClick = { onEndIconClick() }) {
+                    IconButton(modifier = Modifier.size(20.dp), onClick = { onEndIconClick() }) {
                         Icon(
                             painter = painterResource(res), contentDescription = ""
                         )
