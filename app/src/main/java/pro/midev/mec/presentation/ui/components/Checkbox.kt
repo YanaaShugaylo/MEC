@@ -28,7 +28,6 @@ fun MecCheckbox(
     onCheck: (isChecked: Boolean) -> Unit
 ) {
 
-    //Это моя ветка с радио кнопками
 
     val bgColor: Color by animateColorAsState(
         if(isChecked)
