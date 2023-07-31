@@ -1,4 +1,4 @@
-package pro.midev.mec.presentation.ui.test
+package pro.midev.mec.presentation.ui.components
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
