@@ -43,13 +43,8 @@ fun MecCheckbox(
     onCheck: (isChecked: Boolean) -> Unit
 ) {
 
-    //Это моя ветка с радио кнопками
-
     val bgColor: Color by animateColorAsState(
-        if(isChecked)
-           MecTheme.colors.accent_primary
-    else
-            MecTheme.colors.text_tertiary
+        MecTheme.colors.accent_primary
     )
     val rectangleColor: Color by animateColorAsState(
         if(isChecked)
@@ -61,55 +56,33 @@ fun MecCheckbox(
         MecTheme.colors.text_tertiary
     )
 
-    Column {
-        Box(
-            modifier = Modifier
-                .padding(30.dp)
-                .clip(RectangleShape)
-                .size(width = 24.dp, height = 24.dp)
-                .background(bgColor)
-                .padding(2.dp)
-                .clip(RectangleShape)
-                .background(rectangleColor),
-            contentAlignment = Alignment.Center
-        ) {
-
-           // Icon(imageVector = Icons.Default.Check, contentDescription = "")
-            Icon(
-                painter = painterResource(id = R.drawable.arrow),
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier.fillMaxSize()
-            )
-
-        }
-        Box(
-            modifier = Modifier
-                .padding(30.dp)
-                .clip(RectangleShape)
-                .size(width = 24.dp, height = 24.dp)
-                .background(bgColor)
-                .padding(2.dp)
-                .clip(RectangleShape)
-                .background(Color.White),
-            contentAlignment = Alignment.Center
-        ) {
-            Box( modifier = Modifier
-                .clip(RectangleShape)
-                .size(width = 14.dp, height = 14.dp)
-                .background(rectangleColor)
-            )
-        }
+    Box(
+        modifier = Modifier
+            .padding(30.dp)
+            .clip(CircleShape)
+            .size(width = 20.dp, height = 20.dp)
+            .background(bgColor)
+            .padding(2.dp)
+            .clip(CircleShape)
+            .background(Color.White),
+        contentAlignment = Alignment.Center
+    ) {
+        Box( modifier = Modifier
+            .clip(CircleShape)
+            .size(width = 14.dp, height = 14.dp)
+            .background(rectangleColor)
+        )
     }
 }
 
 
+
 @Composable
 @Preview
-private fun CheckboxPreview() {
+private fun RadioButtonPreview() {
     MecTheme {
         MecCheckbox(
-            isChecked = true,
+            isChecked = false,
             onCheck = {}
         )
     }
