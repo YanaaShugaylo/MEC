@@ -35,6 +35,8 @@ import pro.midev.mec.presentation.ui.style.MecTheme
         colors: SwitchColors = SwitchDefaults.colors()
     ) {
 
+    //Привет! Это файл со свитчами
+
         val borderColor: Color by animateColorAsState(
             if (isChecked)
                 MecTheme.colors.accent_primary
