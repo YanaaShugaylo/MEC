@@ -27,8 +27,6 @@ fun MecCheckbox(
     isChecked: Boolean,
     onCheck: (isChecked: Boolean) -> Unit
 ) {
-
-
     val bgColor: Color by animateColorAsState(
         if(isChecked)
             MecTheme.colors.accent_primary
@@ -41,10 +39,6 @@ fun MecCheckbox(
         else
             MecTheme.colors.white
     )
-    val borderColor: Color by animateColorAsState(
-        MecTheme.colors.text_tertiary
-    )
-
     Column {
         Box(
             modifier = Modifier
@@ -58,13 +52,11 @@ fun MecCheckbox(
             contentAlignment = Alignment.Center
         ) {
 
-            // Icon(imageVector = Icons.Default.Check, contentDescription = "")
             Icon(
-                //change icon
-                painter = painterResource(id = R.drawable.chat_item_menu),
+                painter = painterResource(id = R.drawable.ic_arrow),
                 contentDescription = null,
                 tint = Color.White,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.size(width = 14.4.dp, height = 10.6.dp)
             )
 
         }
