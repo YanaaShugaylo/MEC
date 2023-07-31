@@ -18,7 +18,7 @@ import pro.midev.mec.presentation.ui.style.MecTheme
 
 
 @Composable
-fun MecCheckbox(
+fun MecRadioButton(
     isChecked: Boolean,
     onCheck: (isChecked: Boolean) -> Unit
 ) {
@@ -61,7 +61,7 @@ fun MecCheckbox(
 @Preview
 private fun RadioButtonPreview() {
     MecTheme {
-        MecCheckbox(
+        MecRadioButton(
             isChecked = false,
             onCheck = {}
         )
