@@ -35,7 +35,7 @@ class MecFont(
     lineHeight: TextUnit
 ) {
 
-    val bold = TextStyle(
+    val regular = TextStyle(
         fontFamily = mecFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = fontSize,
