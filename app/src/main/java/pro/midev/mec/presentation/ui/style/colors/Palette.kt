@@ -19,7 +19,8 @@ val lightPalette = MecColors(
     bg_quaternary = Color(0xFFFAFAFA),
     success = Color(0xFF10D05D),
     attention = Color(0xFFFFB800),
-    info = Color(0xFF009FD6)
+    info = Color(0xFF009FD6),
+    error = Color(0xFFFF4261)
 )
 
 val darkPalette = MecColors(
@@ -38,7 +39,8 @@ val darkPalette = MecColors(
     bg_quaternary = Color(0xFFFAFAFA),
     success = Color(0xFF10D05D),
     attention = Color(0xFFFFB800),
-    info = Color(0xFF009FD6)
+    info = Color(0xFF009FD6),
+    error = Color(0xFFFF4261)
 )
 
 val LocalMecColors = staticCompositionLocalOf<MecColors> {
