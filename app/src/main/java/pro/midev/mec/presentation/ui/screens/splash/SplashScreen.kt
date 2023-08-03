@@ -1,4 +1,4 @@
-package pro.midev.mec.presentation.ui.screens
+package pro.midev.mec.presentation.ui.screens.splash
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -9,21 +9,17 @@ import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import pro.midev.mec.presentation.ext.LocalGlobalNavigator
-import pro.midev.mec.presentation.ui.screens.splash.SplashAction
-import pro.midev.mec.presentation.ui.screens.splash.SplashEvent
-import pro.midev.mec.presentation.ui.screens.splash.SplashView
-import pro.midev.mec.presentation.ui.screens.splash.SplashViewModel
 import pro.midev.mec.presentation.ui.style.MecTheme
 import pro.midev.mec.util.LocalBottomSheetNavigator
 
-class SplashScreenDefault : AndroidScreen() {
+class SplashScreen : AndroidScreen() {
 
     @Composable
     override fun Content() {
         SplashScreen(viewModel = getScreenModel())
     }
-
 }
+
 
 @Composable
 private fun SplashScreen(
@@ -48,9 +44,6 @@ private fun SplashScreen(
     }
 
     MecTheme {
-        SplashView(
-            state = state,
-            eventConsumer = viewModel::obtainEvent
-        )
+        SplashView(state = state, eventConsumer = viewModel::obtainEvent)
     }
 }

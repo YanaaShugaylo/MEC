@@ -2,10 +2,9 @@ package pro.midev.mec.presentation.ui.screens.splash
 
 import pro.midev.mec.presentation.base.BaseViewModel
 
-class SplashViewModel :
-    BaseViewModel<SplashState, SplashEvent, SplashAction>(
-        SplashState()
-    ) {
+class SplashViewModel : BaseViewModel<SplashState, SplashEvent, SplashAction>(
+    SplashState()
+) {
     override fun obtainEvent(event: SplashEvent) {
         when (event) {
             SplashEvent.OnCreate -> onCreate()
@@ -13,12 +12,6 @@ class SplashViewModel :
     }
 
     private fun onCreate() {
-        loadSplash()
+
     }
-
-
-    private fun loadSplash() {
-        viewState = viewState.copy(duration = 12L)
-    }
-
 }

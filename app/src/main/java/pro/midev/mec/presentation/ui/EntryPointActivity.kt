@@ -26,7 +26,8 @@ import pro.midev.mec.events.Events
 import pro.midev.mec.ext.launchIO
 import pro.midev.mec.ext.withUI
 import pro.midev.mec.presentation.ext.LocalGlobalNavigator
-import pro.midev.mec.presentation.ui.screens.SplashScreenDefault
+import pro.midev.mec.presentation.ui.screens.auth.AuthScreen
+import pro.midev.mec.presentation.ui.screens.splash.SplashScreen
 import pro.midev.mec.util.BottomSheetNavigator
 import retrofit2.HttpException
 
@@ -48,7 +49,7 @@ class EntryPointActivity : FragmentActivity(), KoinComponent {
     }
 
     private fun start() {
-        openScreen(SplashScreenDefault())
+        openScreen(SplashScreen())
     }
 
 
