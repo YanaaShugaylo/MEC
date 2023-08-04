@@ -21,6 +21,7 @@ data class MecColors(
     val bg_quaternary: Color,
     val success: Color,
     val attention: Color,
-    val info: Color
+    val info: Color,
+    val error: Color
 
 )
