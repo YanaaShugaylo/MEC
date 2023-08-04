@@ -81,6 +81,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:+")
     // region Android
     coreLibraryDesugaring(libs.androidDesugaring)
     // endregion
