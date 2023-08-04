@@ -22,20 +22,22 @@ import androidx.compose.ui.unit.dp
 import pro.midev.mec.R
 import pro.midev.mec.enum.StatusRequests
 import pro.midev.mec.presentation.ui.style.MecTheme
+import java.text.DateFormat
 
 @Composable
 fun RequestBase(
     imageId: Int = R.drawable.img_cart_requests,
     status: StatusRequests,
-
-    ) {
+    number: String,
+    date: String,
+) {
     Column(
         modifier = Modifier
             .background(color = MecTheme.colors.bg_primary),
     ) {
         Text(
             modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
-            text = "data",
+            text = date,
             color = MecTheme.colors.accent_primary,
             style = MecTheme.typography.button.semibold
         )
@@ -65,7 +67,7 @@ fun RequestBase(
                         .padding(vertical = 8.dp)
                 )
                 Text(
-                    text = "№ 0101201012",
+                    text = number,
                     style = MecTheme.typography.caption.regular,
                     color = MecTheme.colors.text_tertiary,
                 )
@@ -143,9 +145,9 @@ private fun RequestPreview() {
                     .width(300.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                RequestBase(status = StatusRequests.STATUS)
-                RequestBase(status = StatusRequests.ERROR)
-                RequestBase(status = StatusRequests.WARNING)
+                RequestBase(status = StatusRequests.STATUS, number = "", date = "")
+                RequestBase(status = StatusRequests.ERROR, number = "", date = "")
+                RequestBase(status = StatusRequests.WARNING, number = "", date = "")
 
             }
             Column(
@@ -155,8 +157,8 @@ private fun RequestPreview() {
                     .width(300.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                RequestBase(status = StatusRequests.EDIT)
-                RequestBase(status = StatusRequests.SUCCESS)
+                RequestBase(status = StatusRequests.EDIT, number = "", date = "")
+                RequestBase(status = StatusRequests.SUCCESS, number = "", date = "")
             }
         }
     }
