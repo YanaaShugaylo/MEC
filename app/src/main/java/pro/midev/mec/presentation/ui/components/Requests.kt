@@ -30,6 +30,7 @@ fun RequestBase(
     status: StatusRequests,
     number: String,
     date: String,
+    title: String
 ) {
     Column(
         modifier = Modifier
@@ -63,7 +64,7 @@ fun RequestBase(
                     .padding(start = 0.dp, top = 16.dp, end = 0.dp)
             ) {
                 Text(
-                    text = "Title", style = MecTheme.typography.body_1.semibold, modifier = Modifier
+                    text = title, style = MecTheme.typography.body_1.semibold, modifier = Modifier
                         .padding(vertical = 8.dp)
                 )
                 Text(
@@ -145,9 +146,9 @@ private fun RequestPreview() {
                     .width(300.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                RequestBase(status = StatusRequests.STATUS, number = "", date = "")
-                RequestBase(status = StatusRequests.ERROR, number = "", date = "")
-                RequestBase(status = StatusRequests.WARNING, number = "", date = "")
+                RequestBase(status = StatusRequests.STATUS, number = "№ 1234", date = "1.01.2023", title = "Title")
+                RequestBase(status = StatusRequests.ERROR, number = "№ 1234", date = "1.01.2023", title = "Title")
+                RequestBase(status = StatusRequests.WARNING, number = "№ 1234", date = "1.01.2023", title = "Title")
 
             }
             Column(
@@ -157,8 +158,8 @@ private fun RequestPreview() {
                     .width(300.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                RequestBase(status = StatusRequests.EDIT, number = "", date = "")
-                RequestBase(status = StatusRequests.SUCCESS, number = "", date = "")
+                RequestBase(status = StatusRequests.EDIT, number = "№ 1234", date = "1.01.2023", title = "Title")
+                RequestBase(status = StatusRequests.SUCCESS, number = "№ 1234", date = "1.01.2023", title = "Title")
             }
         }
     }
