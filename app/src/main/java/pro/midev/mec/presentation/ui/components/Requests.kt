@@ -1,10 +1,10 @@
 package pro.midev.mec.presentation.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pro.midev.mec.R
@@ -24,14 +25,12 @@ import pro.midev.mec.presentation.ui.style.MecTheme
 
 @Composable
 fun RequestBase(
-    imageId: Int = R.drawable.rectangle_207,
+    imageId: Int = R.drawable.img_cart_requests,
     status: StatusRequests,
 
     ) {
     Column(
         modifier = Modifier
-            .width(238.dp)
-            .height(184.dp)
             .background(color = MecTheme.colors.bg_primary),
     ) {
         Text(
@@ -43,31 +42,27 @@ fun RequestBase(
         Divider(
             color = MecTheme.colors.bg_secondary, modifier = Modifier
                 .height(1.dp)
-                .fillMaxWidth()
         )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(112.dp)
                 .padding(top = 16.dp)
         ) {
-            Icon(
+            Image(
                 modifier = Modifier
                     .width(96.dp)
                     .height(96.dp),
                 painter = painterResource(imageId),
-                tint = Color.Unspecified,
                 contentDescription = ""
             )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxWidth()
                     .padding(start = 0.dp, top = 16.dp, end = 0.dp)
             ) {
                 Text(
                     text = "Title", style = MecTheme.typography.body_1.semibold, modifier = Modifier
-                        .padding(start = 0.dp, top = 8.dp, end = 0.dp, bottom = 8.dp)
+                        .padding(vertical = 8.dp)
                 )
                 Text(
                     text = "№ 0101201012",
@@ -75,17 +70,14 @@ fun RequestBase(
                     color = MecTheme.colors.text_tertiary,
                 )
             }
-
         }
         Divider(
             color = MecTheme.colors.bg_secondary, modifier = Modifier
                 .height(1.dp)
-                .fillMaxWidth()
         )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight()
                 .background(
                     when (status) {
                         StatusRequests.STATUS -> MecTheme.colors.bg_primary
@@ -98,8 +90,6 @@ fun RequestBase(
         ) {
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
                     .padding(start = 16.dp, top = 8.dp, end = 0.dp, bottom = 8.dp),
             ) {
                 Icon(
@@ -107,22 +97,22 @@ fun RequestBase(
                         .width(24.dp)
                         .height(24.dp),
                     painter = when (status) {
-                        StatusRequests.STATUS -> painterResource(R.drawable.icon_loading)
-                        StatusRequests.SUCCESS -> painterResource(R.drawable.icon_warning)
-                        StatusRequests.EDIT -> painterResource(R.drawable.icon_success)
-                        StatusRequests.ERROR -> painterResource(R.drawable.icon_error)
-                        StatusRequests.WARNING -> painterResource(R.drawable.icon_edit)
+                        StatusRequests.STATUS -> painterResource(R.drawable.ic_loading_requests)
+                        StatusRequests.SUCCESS -> painterResource(R.drawable.ic_warning_requests)
+                        StatusRequests.EDIT -> painterResource(R.drawable.ic_success_requests)
+                        StatusRequests.ERROR -> painterResource(R.drawable.ic_error_requests)
+                        StatusRequests.WARNING -> painterResource(R.drawable.ic_edit_requests)
                     },
                     tint = Color.Unspecified,
                     contentDescription = ""
                 )
                 Text(
                     text = when (status) {
-                        StatusRequests.STATUS -> "Статус"
-                        StatusRequests.SUCCESS -> "Ошибка"
-                        StatusRequests.EDIT -> "Успех"
-                        StatusRequests.ERROR -> "Отказ"
-                        StatusRequests.WARNING -> "Черновик"
+                        StatusRequests.STATUS -> stringResource(R.string.status_status)
+                        StatusRequests.SUCCESS -> stringResource(R.string.success_status)
+                        StatusRequests.EDIT -> stringResource(R.string.edit_status)
+                        StatusRequests.ERROR -> stringResource(R.string.error_status)
+                        StatusRequests.WARNING -> stringResource(R.string.warning_status)
                     },
                     style = MecTheme.typography.caption.semibold,
                     modifier = Modifier
@@ -142,20 +132,29 @@ fun RequestBase(
 
 
 @Composable
-@Preview(showBackground = true, widthDp = 800)
+@Preview(showBackground = true, widthDp = 900, heightDp = 900)
 private fun RequestPreview() {
     MecTheme {
-        Row(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-        ) {
-            Column(Modifier.padding(all = 24.dp), verticalArrangement = Arrangement.spacedBy(24.dp)) {
+        Row() {
+            Column(
+                Modifier
+                    .padding(all = 24.dp)
+                    .height(900.dp)
+                    .width(300.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
                 RequestBase(status = StatusRequests.STATUS)
                 RequestBase(status = StatusRequests.ERROR)
                 RequestBase(status = StatusRequests.WARNING)
+
             }
-            Column(Modifier.padding(all = 24.dp), verticalArrangement = Arrangement.spacedBy(24.dp)) {
+            Column(
+                Modifier
+                    .padding(all = 24.dp)
+                    .height(900.dp)
+                    .width(300.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
                 RequestBase(status = StatusRequests.EDIT)
                 RequestBase(status = StatusRequests.SUCCESS)
             }
