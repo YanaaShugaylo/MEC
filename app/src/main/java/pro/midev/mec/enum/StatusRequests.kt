@@ -7,9 +7,9 @@ enum class StatusRequests {
         fun parse(type: StatusRequests) = when (type) {
             STATUS -> 1
             WARNING -> 2
-            SUCCESS -> 3
+            SUCCESS -> 5
             ERROR -> 4
-            EDIT -> 5
+            EDIT -> 3
         }
     }
 }

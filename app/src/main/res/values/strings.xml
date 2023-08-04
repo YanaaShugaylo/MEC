@@ -15,4 +15,10 @@
     <string name="error_unauthorized">Ошибка авторизации</string>
     <string name="error_undefined">Неизвестная ошибка</string>
 
+    //Name Requests Status
+    <string name="error_status">Ошибка</string>
+    <string name="edit_status">Успех</string>
+    <string name="warning_status">Черновик</string>
+    <string name="success_status">Отказ</string>
+    <string name="status_status">Статус</string>
 </resources>
