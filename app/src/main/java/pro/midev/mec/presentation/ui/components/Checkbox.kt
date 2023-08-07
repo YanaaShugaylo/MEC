@@ -2,9 +2,9 @@ package pro.midev.mec.presentation.ui.components
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
@@ -21,6 +21,103 @@ import androidx.compose.ui.unit.dp
 import pro.midev.mec.R
 import pro.midev.mec.presentation.ui.style.MecTheme
 
+@Composable
+fun MecCheckBoxMark(
+    isChecked: Boolean,
+    onCheck: (isChecked: Boolean) -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .clickable { onCheck(!isChecked) }
+    ) {
+        if (!isChecked) {
+            MecCheckBoxInactive()
+        } else {
+            val bgColor: Color by animateColorAsState(
+                if(isChecked)
+                    MecTheme.colors.accent_primary
+                else
+                    MecTheme.colors.text_tertiary
+            )
+            val rectangleColor: Color by animateColorAsState(
+                if(isChecked)
+                    MecTheme.colors.accent_primary
+                else
+                    MecTheme.colors.white
+            )
+            Box(
+                modifier = Modifier
+                    .padding(30.dp)
+                    .clip(RectangleShape)
+                    .size(width = 24.dp, height = 24.dp)
+                    .background(bgColor)
+                    .padding(2.dp)
+                    .clip(RectangleShape)
+                    .background(rectangleColor),
+                contentAlignment = Alignment.Center
+            ) {
+
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_checkbox_mark),
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier.size(width = 14.4.dp, height = 10.6.dp)
+                )
+
+            }
+        }
+    }
+}
+
+@Composable
+fun MecCheckBoxSquare(
+    isChecked: Boolean,
+    onCheck: (isChecked: Boolean) -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .clickable { onCheck(!isChecked) }
+    ) {
+        if (!isChecked) {
+            MecCheckBoxInactive()
+        } else {
+            val bgColor: Color by animateColorAsState(
+                if(isChecked)
+                    MecTheme.colors.accent_primary
+                else
+                    MecTheme.colors.text_tertiary
+            )
+            val rectangleColor: Color by animateColorAsState(
+                if(isChecked)
+                    MecTheme.colors.accent_primary
+                else
+                    MecTheme.colors.white
+            )
+            Box(
+                modifier = Modifier
+                    .padding(30.dp)
+                    .clip(RectangleShape)
+                    .size(width = 24.dp, height = 24.dp)
+                    .background(bgColor)
+                    .padding(2.dp)
+                    .clip(RectangleShape)
+                    .background(Color.White),
+                contentAlignment = Alignment.Center
+            ) {
+                Box( modifier = Modifier
+                    .clip(RectangleShape)
+                    .size(width = 14.dp, height = 14.dp)
+                    .background(rectangleColor)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun MecCheckBoxInactive() {
+    // Реализация пустого квадратика с рисунка 2
+}
 
 @Composable
 fun MecCheckbox(
@@ -53,7 +150,7 @@ fun MecCheckbox(
         ) {
 
             Icon(
-                painter = painterResource(id = R.drawable.ic_arrow),
+                painter = painterResource(id = R.drawable.ic_checkbox_mark),
                 contentDescription = null,
                 tint = Color.White,
                 modifier = Modifier.size(width = 14.4.dp, height = 10.6.dp)
@@ -85,9 +182,10 @@ fun MecCheckbox(
 @Preview
 private fun CheckboxPreview() {
     MecTheme {
-        MecCheckbox(
-            isChecked = true,
-            onCheck = {}
-        )
+        MecCheckBoxMark(isChecked = true, onCheck = {})
+        MecCheckBoxMark(isChecked = false, onCheck = {})
+
+        MecCheckBoxSquare(isChecked = true, onCheck = {})
+        MecCheckBoxSquare(isChecked = false, onCheck = {})
     }
 }
