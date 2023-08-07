@@ -1,4 +1,4 @@
-package pro.midev.mec.presentation.ui.screens.auth
+package pro.midev.mec.presentation.ui.screens.pin.enter
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,50 +8,32 @@ import cafe.adriel.voyager.androidx.AndroidScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import pro.midev.mec.presentation.ext.LocalGlobalNavigator
-import pro.midev.mec.presentation.ui.screens.pin.enter.EnterPinScreen
 import pro.midev.mec.presentation.ui.style.MecTheme
-import pro.midev.mec.util.LocalBottomSheetNavigator
 
-
-class AuthScreen : AndroidScreen() {
+class EnterPinScreen : AndroidScreen() {
 
     @Composable
     override fun Content() {
-        AuthScreen(viewModel = getScreenModel())
+        EnterPinScreen(viewModel = getScreenModel())
     }
-
 }
 
 @Composable
-private fun AuthScreen(
-    viewModel: AuthViewModel
+private fun EnterPinScreen(
+    viewModel: EnterPinViewModel
 ) {
-    val bottomSheetNavigator = LocalBottomSheetNavigator.current
     val navigator = LocalNavigator.currentOrThrow
-    val rootNavigator = LocalGlobalNavigator.current
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
     val action by viewModel.viewActions.collectAsStateWithLifecycle(initialValue = null)
 
     LaunchedEffect(action) {
         when (action) {
-            is AuthAction.GoToNextScreen -> {
-                navigator.push(EnterPinScreen())
-            }
-
-            null -> {}
+            else -> {}
         }
 
     }
 
-    LaunchedEffect(true) {
-        viewModel.obtainEvent(AuthEvent.OnCreate)
-    }
-
     MecTheme {
-        AuthView(
-            state = state,
-            eventConsumer = viewModel::obtainEvent
-        )
+        EnterPinView(state = state, eventConsumer = viewModel::obtainEvent)
     }
 }

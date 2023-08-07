@@ -44,7 +44,7 @@ android {
             isMinifyEnabled = false
             versionNameSuffix = "-debug"
 
-            buildConfigField("String", "SERVER_URL", "\"\thttps://surfis.htmlup.ru/api/v2/\"")
+            buildConfigField("String", "SERVER_URL", "\"\thttps://mobile.moscow-export.com/api/1.0/\"")
         }
         val release by getting {
             // TODO: Enable minify
@@ -52,7 +52,7 @@ android {
             isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 
-            buildConfigField("String", "SERVER_URL", "\"\thttps://barista.midev.pro/api/v2/\"")
+            buildConfigField("String", "SERVER_URL", "\"\thttps://mobile.moscow-export.com/api/1.0/\"")
         }
     }
 

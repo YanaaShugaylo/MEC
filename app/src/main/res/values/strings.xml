@@ -2,6 +2,9 @@
     <string name="app_name">MEC</string>
 
 
+    <string name="skip">Пропустить</string>
+
+
     //Name of items in menu
     <string name="main_item_menu">Главная</string>
     <string name="services_item_menu">Услуги</string>
@@ -21,4 +24,8 @@
     <string name="warning_status">Черновик</string>
     <string name="success_status">Отказ</string>
     <string name="status_status">Статус</string>
+
+    // Pin code
+    <string name="pin_enter">Введите код</string>
+    <string name="pin_think">Придумайте 6-значный код для входа в приложение</string>
 </resources>
