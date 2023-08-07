@@ -15,10 +15,24 @@
     <string name="error_unauthorized">Ошибка авторизации</string>
     <string name="error_undefined">Неизвестная ошибка</string>
 
+
     //Name Requests Status
     <string name="error_status">Ошибка</string>
     <string name="edit_status">Успех</string>
     <string name="warning_status">Черновик</string>
     <string name="success_status">Отказ</string>
     <string name="status_status">Статус</string>
+    <string name="title_num">№:</string>
+    //if request == null
+    <string name="title_no_request">Кажется, у Вас сейчас нет заявок на рассмотрении</string>
+    <string name="subtitle_no_request">Вы можете подать заявку на получение услуги прямо сейчас</string>
+    <string name="btn_no_request">Перейти к услугам</string>
+
+    //Account Fragment
+    <string name="title_requests">Текущие заявки</string>
+    <string name="btn_next">Профиль пользователя</string>
+    <string name="btn_question">Часто задаваемые вопросы</string>
+    <string name="title_org_inn">ИНН:</string>
+
+
 </resources>
