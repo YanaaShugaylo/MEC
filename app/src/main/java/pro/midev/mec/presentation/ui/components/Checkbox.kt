@@ -34,16 +34,10 @@ fun MecCheckBoxMark(
             MecCheckBoxInactive()
         } else {
             val bgColor: Color by animateColorAsState(
-                if(isChecked)
                     MecTheme.colors.accent_primary
-                else
-                    MecTheme.colors.text_tertiary
             )
             val rectangleColor: Color by animateColorAsState(
-                if(isChecked)
                     MecTheme.colors.accent_primary
-                else
-                    MecTheme.colors.white
             )
             Box(
                 modifier = Modifier
@@ -82,16 +76,10 @@ fun MecCheckBoxSquare(
             MecCheckBoxInactive()
         } else {
             val bgColor: Color by animateColorAsState(
-                if(isChecked)
                     MecTheme.colors.accent_primary
-                else
-                    MecTheme.colors.text_tertiary
             )
             val rectangleColor: Color by animateColorAsState(
-                if(isChecked)
                     MecTheme.colors.accent_primary
-                else
-                    MecTheme.colors.white
             )
             Box(
                 modifier = Modifier
@@ -116,68 +104,31 @@ fun MecCheckBoxSquare(
 
 @Composable
 private fun MecCheckBoxInactive() {
-    // Реализация пустого квадратика с рисунка 2
-}
-
-@Composable
-fun MecCheckbox(
-    isChecked: Boolean,
-    onCheck: (isChecked: Boolean) -> Unit
-) {
-    val bgColor: Color by animateColorAsState(
-        if(isChecked)
-            MecTheme.colors.accent_primary
-        else
+    val unactiveColor: Color by animateColorAsState(
             MecTheme.colors.text_tertiary
     )
-    val rectangleColor: Color by animateColorAsState(
-        if(isChecked)
-            MecTheme.colors.accent_primary
-        else
+    val whiteColor: Color by animateColorAsState(
             MecTheme.colors.white
     )
-    Column {
-        Box(
-            modifier = Modifier
-                .padding(30.dp)
-                .clip(RectangleShape)
-                .size(width = 24.dp, height = 24.dp)
-                .background(bgColor)
-                .padding(2.dp)
-                .clip(RectangleShape)
-                .background(rectangleColor),
-            contentAlignment = Alignment.Center
-        ) {
-
-            Icon(
-                painter = painterResource(id = R.drawable.ic_checkbox_mark),
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier.size(width = 14.4.dp, height = 10.6.dp)
-            )
-
-        }
-        Box(
-            modifier = Modifier
-                .padding(30.dp)
-                .clip(RectangleShape)
-                .size(width = 24.dp, height = 24.dp)
-                .background(bgColor)
-                .padding(2.dp)
-                .clip(RectangleShape)
-                .background(Color.White),
-            contentAlignment = Alignment.Center
-        ) {
-            Box( modifier = Modifier
-                .clip(RectangleShape)
-                .size(width = 14.dp, height = 14.dp)
-                .background(rectangleColor)
-            )
-        }
+    Box(
+        modifier = Modifier
+            .padding(30.dp)
+            .clip(RectangleShape)
+            .size(width = 24.dp, height = 24.dp)
+            .background(unactiveColor)
+            .padding(2.dp)
+            .clip(RectangleShape)
+            .background(Color.White),
+        contentAlignment = Alignment.Center
+    ) {
+        Box( modifier = Modifier
+            .clip(RectangleShape)
+            .size(width = 14.dp, height = 14.dp)
+            .background(whiteColor)
+        )
     }
+
 }
-
-
 @Composable
 @Preview
 private fun CheckboxPreview() {
