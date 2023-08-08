@@ -72,7 +72,7 @@ fun MecServiceCard(
                     .fillMaxSize()
                     .background(Color.White)) {
                     Image(
-                        painterResource(id = R.drawable.img_card),
+                        painterResource(id = R.drawable.ims_card),
                         contentDescription = "Dog Image",
                         modifier = Modifier.padding(start = 30.dp)
                             .size(136.dp, 136.dp))
