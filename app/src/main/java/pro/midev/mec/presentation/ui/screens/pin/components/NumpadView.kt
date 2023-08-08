@@ -109,7 +109,7 @@ private fun NumpadTextButton(
 
     TextButton(
         onClick = {
-            onClick(value)
+
         },
         colors = ButtonDefaults.textButtonColors(
             backgroundColor = color.value,
@@ -125,11 +125,13 @@ private fun NumpadTextButton(
                     }
 
                     MotionEvent.ACTION_UP -> {
+                        onClick(value)
                         color.value = Color(0xFFF4EBFC)
                     }
                 }
                 true
-            },
+            }
+            ,
         shape = RectangleShape,
     ) {
         Text(
@@ -161,6 +163,7 @@ private fun NumpadIconButton(
 
                     MotionEvent.ACTION_UP -> {
                         color.value = Color(0xFFF4EBFC)
+                        onClick()
                     }
                 }
                 true
@@ -170,7 +173,7 @@ private fun NumpadIconButton(
             contentColor = MecTheme.colors.text_primary
         ),
         elevation = null,
-        onClick = onClick
+        onClick = {}
     ) {
         Icon(
             painter = painterResource(icon),

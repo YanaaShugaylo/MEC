@@ -4,12 +4,14 @@ import androidx.compose.runtime.Immutable
 import pro.midev.mec.presentation.base.BaseAction
 import pro.midev.mec.presentation.base.BaseEvent
 import pro.midev.mec.presentation.base.BaseState
+import pro.midev.mec.presentation.ui.utils.LaunchEffectTrigger
 
 @Immutable
 data class EnterPinState(
     val pin: String = "",
-    val isFirst: Boolean = false,
-    val name: String = "",
+    val isRepeatMode: Boolean = false,
+    val confirmPin: String = "",
+    val errorTrigger: LaunchEffectTrigger? = null,
     val isTouchIdEnabled: Boolean = false
 
 ) : BaseState {

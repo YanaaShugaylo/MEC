@@ -28,4 +28,14 @@
     // Pin code
     <string name="pin_enter">Введите код</string>
     <string name="pin_think">Придумайте 6-значный код для входа в приложение</string>
+    //Pin confirm
+    <string name="pin_confirm">Подтвердите код</string>
+    <string name="pin_confirm_desc">Подтвердите 6-значный код для входа в приложение</string>
+
+    //finger print
+    <string name="finger_print_screen_title">Вход с помощью FingerPrint</string>
+    <string name="finger_print_screen_subtitle">Вместо ПИН-кода для входа Вы можете использовать FingerPrint</string>
+    <string name="finger_print_screen_use_pin">Использовать только ПИН-код</string>
+    <string name="finger_print_screen_use_finger_print">Использовать FingerPrint</string>
+
 </resources>

@@ -27,7 +27,8 @@ fun EnterPinView(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize().statusBarsPadding()
+            .fillMaxSize()
+            .statusBarsPadding()
             .background(color = MecTheme.colors.white),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -45,7 +46,7 @@ fun EnterPinView(
         )
 
         Text(
-            text = stringResource(id = R.string.pin_enter),
+            text = stringResource(id = if (state.isRepeatMode) R.string.pin_confirm else R.string.pin_enter),
             style = MecTheme.typography.h5.semibold,
             color = MecTheme.colors.accent_primary,
             modifier = Modifier
@@ -57,7 +58,7 @@ fun EnterPinView(
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp, bottom = 32.dp)
                 .fillMaxWidth(),
-            text = stringResource(id = R.string.pin_think),
+            text = stringResource(id = if (state.isRepeatMode) R.string.pin_confirm_desc else R.string.pin_think),
             style = MecTheme.typography.subtitle_1.regular,
             color = MecTheme.colors.text_secondary
         )
@@ -66,7 +67,8 @@ fun EnterPinView(
             value = state.pin,
             dotSize = 12.dp,
             dotsCount = state.charCount,
-            dotsSpace = 12.dp
+            dotsSpace = 12.dp,
+            errorTrigger = state.errorTrigger
         )
 
         NumpadView(
