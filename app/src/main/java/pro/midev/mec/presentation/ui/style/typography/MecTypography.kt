@@ -94,6 +94,6 @@ val mecTypography = MecTypography(
     ),
     overline = MecFont(
         fontSize = 10.sp,
-        lineHeight = 16.sp
+        lineHeight = 12.sp
     )
 )
