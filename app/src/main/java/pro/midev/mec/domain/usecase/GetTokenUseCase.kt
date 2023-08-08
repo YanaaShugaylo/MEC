@@ -13,15 +13,15 @@ class GetTokenUseCase(
     private val userKeyStorage: UserKeyStorage
 ) : BaseUseCase {
 
-    operator fun invoke(code : String) : Flow<CompletableStatus> = flow {
-        when(val tokenResponse = remoteRepository.getToken(code)){
+    operator fun invoke(code: String): Flow<CompletableStatus> = flow {
+        when (val tokenResponse = remoteRepository.getToken(code)) {
             is DataStatus.Error -> emit(CompletableStatus.Error(tokenResponse.ex))
             DataStatus.Loading -> {
                 emit(CompletableStatus.Loading)
             }
 
             is DataStatus.Success -> {
-                userKeyStorage.saveToken(tokenResponse.data?.token ?: "") // вопросики!!!
+                userKeyStorage.saveToken(tokenResponse.data as String) // вопросики!!!
                 emit(CompletableStatus.Success)
             }
         }

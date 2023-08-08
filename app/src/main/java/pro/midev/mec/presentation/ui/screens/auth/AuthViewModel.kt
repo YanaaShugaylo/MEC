@@ -32,11 +32,16 @@ class AuthViewModel(
 
     private fun getToken(code: String) {
         viewModelScope.launch {
-            getTokenUseCase.invoke(code).collectLatest { result ->
+            getTokenUseCase(code).collectLatest { result ->
                 when (result) {
                     is CompletableStatus.Success -> action = AuthAction.GoToNextScreen
-                    is CompletableStatus.Loading -> {}
-                    is CompletableStatus.Error -> {}
+                    is CompletableStatus.Error -> {
+                        showErrorToast(result.ex)
+                    }
+
+                    is CompletableStatus.Loading -> {
+                        //viewState = viewState.copy()
+                    }
                 }
             }
         }

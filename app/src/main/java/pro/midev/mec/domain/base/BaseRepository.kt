@@ -4,6 +4,7 @@ import pro.midev.mec.data.base.CompletableStatus
 import pro.midev.mec.data.base.DataStatus
 import pro.midev.mec.data.remote.model.response.CompletableData
 import pro.midev.mec.data.remote.model.response.DataWrapper
+import pro.midev.mec.data.remote.model.response.TokenResponse
 import pro.midev.mec.data.remote.model.response.toCompletableStatus
 import pro.midev.mec.data.remote.model.response.toDataStatus
 import pro.midev.mec.ext.withIO
@@ -28,4 +29,14 @@ interface BaseRepository {
             CompletableStatus.Error(ex)
         }
     }
+
+    suspend fun handleTokenRequest(requestFunc: suspend () -> TokenResponse): DataStatus<TokenResponse> {
+        return try {
+            withIO { requestFunc() }.toDataStatus()
+        } catch (ex: Exception) {
+            Timber.e(ex)
+            DataStatus.Error(ex)
+        }
+    }
+
 }

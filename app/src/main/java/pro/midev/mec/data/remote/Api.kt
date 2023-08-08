@@ -18,6 +18,6 @@ interface Api {
     suspend fun getToken(
         @Field("provider") provider : String = "SUDIR",
         @Field("credentialsOrCode") credentialsOrCode : String
-    ) : DataWrapper<TokenResponse>
+    ) : TokenResponse // todo продумать сетевой слой
 
 }

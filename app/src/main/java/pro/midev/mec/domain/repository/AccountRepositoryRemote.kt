@@ -21,7 +21,7 @@ class AccountRepositoryRemote(
 
     suspend fun getToken( // получение токена
         code: String
-    ): DataStatus<TokenResponse> = handleRequest {
+    ): DataStatus<TokenResponse> = handleTokenRequest {
         api.getToken(credentialsOrCode = code)
     }
 

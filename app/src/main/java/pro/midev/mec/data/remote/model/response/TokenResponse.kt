@@ -1,5 +1,8 @@
 package pro.midev.mec.data.remote.model.response
 
 data class TokenResponse(
-    val token: String? = null
+    val success: Boolean?,
+    val message: String?,
+    val token: String?
 )
+
