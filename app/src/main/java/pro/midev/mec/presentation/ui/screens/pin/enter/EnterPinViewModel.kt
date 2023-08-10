@@ -8,8 +8,13 @@ import pro.midev.mec.presentation.base.BaseViewModel
 import pro.midev.mec.presentation.ui.utils.LaunchEffectTrigger
 
 class EnterPinViewModel(
-    private val pinSaveUseCase: PinSaveUseCase
-) : BaseViewModel<EnterPinState, EnterPinEvent, EnterPinAction>(EnterPinState()) {
+    private val pinSaveUseCase: PinSaveUseCase,
+    private val isLoginMode: Boolean
+) : BaseViewModel<EnterPinState, EnterPinEvent, EnterPinAction>(
+    EnterPinState(
+        isLoginMode = isLoginMode
+    )
+) {
     override fun obtainEvent(event: EnterPinEvent) {
         when (event) {
             EnterPinEvent.OnCharRemove -> {
@@ -28,17 +33,19 @@ class EnterPinViewModel(
         val newValue = viewState.pin + char
         if (newValue.length <= viewState.charCount) {
             viewState = viewState.copy(pin = newValue)
-            if (newValue.length == viewState.charCount) {
+            if (newValue.length == viewState.charCount) { // проверяем на кол-во символов, дальше смотрим с зависимости от МОДА : Первый вход, Поддтверждение и Вход в приложение
                 if (viewState.isRepeatMode) {
                     if (viewState.pin == viewState.confirmPin) {
                         viewModelScope.launch {
                             pinSaveUseCase(viewState.confirmPin).collectLatest {
-                                // todo открыть Экран ТOUCH ID
+                                action = EnterPinAction.OpenScreenTouchAction
                             }
                         }
                     } else {
-                        viewState = viewState.copy(pin = "", errorTrigger = LaunchEffectTrigger())
+                        viewState = viewState.copy(pin = "", errorTrigger = LaunchEffectTrigger(), isErrorMode = true)
                     }
+                } else if (viewState.isLoginMode) {
+                    // todo
                 } else {
                     viewState = viewState.copy(isRepeatMode = true, confirmPin = viewState.pin, pin = "")
                 }

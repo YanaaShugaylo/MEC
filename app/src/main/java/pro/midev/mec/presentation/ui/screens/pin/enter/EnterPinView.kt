@@ -1,5 +1,6 @@
 package pro.midev.mec.presentation.ui.screens.pin.enter
 
+import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,11 +10,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import pro.midev.mec.R
 import pro.midev.mec.presentation.ui.components.TextTitleToolbar
 import pro.midev.mec.presentation.ui.screens.pin.components.InputProgressView
@@ -25,6 +33,18 @@ fun EnterPinView(
     state: EnterPinState,
     eventConsumer: (EnterPinEvent) -> Unit
 ) {
+
+    var useBio by remember { mutableStateOf(false) }
+
+    if (useBio) {
+        useBio = false
+        BiometricDialog(object : BiometricPrompt.AuthenticationCallback() {
+            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                // eventConsumer(EnterPinEvent.OnBiometricConfirmed) todo
+            }
+        })
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -34,19 +54,27 @@ fun EnterPinView(
     ) {
         TextTitleToolbar(
             actionsEnd = {
-                Text(
-                    modifier = Modifier.padding(end = 12.dp),
-                    text = stringResource(id = R.string.skip),
-                    color = MecTheme.colors.text_primary,
-                    style = MecTheme.typography.subtitle_1.semibold
-                )
+                if (!state.isLoginMode)
+                    Text(
+                        modifier = Modifier.padding(end = 12.dp),
+                        text = stringResource(id = R.string.skip),
+                        color = MecTheme.colors.text_primary,
+                        style = MecTheme.typography.subtitle_1.semibold
+                    )
             },
             onBackPressed = {},
             hasNavigationIcon = true
         )
 
         Text(
-            text = stringResource(id = if (state.isRepeatMode) R.string.pin_confirm else R.string.pin_enter),
+            text = stringResource(
+                id = when {
+                    state.isErrorMode && state.isRepeatMode -> R.string.pin_enter
+                    !state.isErrorMode && state.isRepeatMode -> R.string.pin_confirm
+                    !state.isRepeatMode && !state.isErrorMode -> R.string.pin_enter
+                    else -> R.string.pin_enter // todo
+                }
+            ),
             style = MecTheme.typography.h5.semibold,
             color = MecTheme.colors.accent_primary,
             modifier = Modifier
@@ -58,7 +86,14 @@ fun EnterPinView(
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp, bottom = 32.dp)
                 .fillMaxWidth(),
-            text = stringResource(id = if (state.isRepeatMode) R.string.pin_confirm_desc else R.string.pin_think),
+            text = stringResource(
+                id = when {
+                    state.isErrorMode && state.isRepeatMode -> R.string.pin_entered_wrong
+                    !state.isErrorMode && state.isRepeatMode -> R.string.pin_confirm_desc
+                    !state.isRepeatMode && !state.isErrorMode -> R.string.pin_think
+                    else -> R.string.pin_enter // todo
+                }
+            ),
             style = MecTheme.typography.subtitle_1.regular,
             color = MecTheme.colors.text_secondary
         )
@@ -93,3 +128,17 @@ private fun EnterPinView() {
         )
     }
 }
+
+@Composable
+fun BiometricDialog(callback: BiometricPrompt.AuthenticationCallback) {
+    val promptInfo = BiometricPrompt.PromptInfo.Builder()
+        .setTitle(stringResource(R.string.pin_confirm_sensor_auth))
+        .setNegativeButtonText(stringResource(R.string.cancel))
+        .setDescription(stringResource(R.string.pin_confirm_sensor_auth_description))
+        .build()
+
+    val activity = LocalContext.current as FragmentActivity
+    val executor = ContextCompat.getMainExecutor(activity)
+    BiometricPrompt(activity, executor, callback).authenticate(promptInfo)
+}
+

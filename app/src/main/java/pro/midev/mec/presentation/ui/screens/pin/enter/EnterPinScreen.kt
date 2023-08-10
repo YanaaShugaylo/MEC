@@ -8,13 +8,17 @@ import cafe.adriel.voyager.androidx.AndroidScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import org.koin.core.parameter.parametersOf
+import pro.midev.mec.presentation.ui.screens.MainScreen
 import pro.midev.mec.presentation.ui.style.MecTheme
 
-class EnterPinScreen : AndroidScreen() {
+class EnterPinScreen(
+    private val isLoginMode: Boolean = true
+) : AndroidScreen() {
 
     @Composable
     override fun Content() {
-        EnterPinScreen(viewModel = getScreenModel())
+        EnterPinScreen(viewModel = getScreenModel { parametersOf(isLoginMode) })
     }
 }
 
@@ -28,6 +32,7 @@ private fun EnterPinScreen(
 
     LaunchedEffect(action) {
         when (action) {
+            EnterPinAction.OpenScreenTouchAction -> navigator.replaceAll(MainScreen())
             else -> {}
         }
 

@@ -12,7 +12,9 @@ data class EnterPinState(
     val isRepeatMode: Boolean = false,
     val confirmPin: String = "",
     val errorTrigger: LaunchEffectTrigger? = null,
-    val isTouchIdEnabled: Boolean = false
+    val isTouchIdEnabled: Boolean = false,
+    val isErrorMode: Boolean = false,
+    val isLoginMode: Boolean = false
 
 ) : BaseState {
     val charCount: Int = 6
@@ -28,5 +30,7 @@ sealed interface EnterPinEvent : BaseEvent {
 }
 
 sealed interface EnterPinAction : BaseAction {
+
+    object OpenScreenTouchAction : EnterPinAction
 
 }

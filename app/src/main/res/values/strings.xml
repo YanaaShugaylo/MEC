@@ -3,10 +3,11 @@
 
 
     <string name="skip">Пропустить</string>
+    <string name="cancel">Отменить</string>
 
 
     //Name of items in menu
-    <string name="main_item_menu">Главная</string>
+    <string name="main_tab">Главная</string>
     <string name="services_item_menu">Услуги</string>
     <string name="requests_item_menu">Заявки</string>
     <string name="chat_item_menu">Чат</string>
@@ -31,6 +32,10 @@
     //Pin confirm
     <string name="pin_confirm">Подтвердите код</string>
     <string name="pin_confirm_desc">Подтвердите 6-значный код для входа в приложение</string>
+    <string name="pin_confirm_sensor_auth">Авторизация через сенсор</string>
+    <string name="pin_confirm_sensor_auth_description">Коснитесь своим пальцем сенсора</string>
+
+    <string name="pin_entered_wrong">Вы ввели неверный ПИН. Попробуйте снова</string>
 
     //finger print
     <string name="finger_print_screen_title">Вход с помощью FingerPrint</string>

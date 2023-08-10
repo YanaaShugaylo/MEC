@@ -40,7 +40,9 @@ private fun SplashScreen(
             }
 
             is SplashAction.GoToEnterPinScreen -> {
-                navigator.push(EnterPinScreen())
+                (action as? SplashAction.GoToEnterPinScreen)?.let {
+                    EnterPinScreen(it.isLoginMode)
+                }
             }
 
             null -> {}

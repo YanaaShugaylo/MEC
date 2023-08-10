@@ -19,11 +19,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import pro.midev.mec.R
+import pro.midev.mec.presentation.ui.components.ButtonOutlined
 import pro.midev.mec.presentation.ui.components.ButtonPrimary
 import pro.midev.mec.presentation.ui.style.MecTheme
 
 @Composable
-private fun FingerPrintView(
+fun FingerPrintView(
     state: FingerPrintState,
     eventConsumer: (FingerPrintEvent) -> Unit
 ) {
@@ -64,7 +65,13 @@ private fun FingerPrintView(
             text = stringResource(id = R.string.finger_print_screen_use_finger_print)
         )
 
-        // todo
+        ButtonOutlined(
+            modifier = Modifier.padding(top = 16.dp)
+                .fillMaxWidth()
+                .height(56.dp),
+            onClick = { /*TODO*/ },
+            text = stringResource(id = R.string.finger_print_screen_use_pin)
+        )
 
 
     }
