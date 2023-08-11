@@ -9,12 +9,11 @@ import pro.midev.mec.presentation.base.BaseState
 class FingerPrintState : BaseState
 
 sealed interface FingerPrintEvent : BaseEvent {
-    object CloseBtnClick : FingerPrintEvent
-    object NextBtnClick : FingerPrintEvent
+    object SkipEvent : FingerPrintEvent
+    data class SaveIsEnabledTouchModeEvent(val isEnabledTouchMode : Boolean) : FingerPrintEvent
 }
 
 sealed interface FingerPrintAction : BaseAction {
-
     object Skip : FingerPrintAction
 
 }

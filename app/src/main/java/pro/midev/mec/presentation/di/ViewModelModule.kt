@@ -19,11 +19,11 @@ val viewModelModule = module {
     }
 
     viewModel { parameters ->
-        EnterPinViewModel(get(), parameters[0])
+        EnterPinViewModel(get(), get(), get(), get(), parameters [0])
     }
 
     viewModel {
-        FingerPrintViewModel()
+        FingerPrintViewModel(get())
     }
 
     viewModel { MainProfileViewModel() }

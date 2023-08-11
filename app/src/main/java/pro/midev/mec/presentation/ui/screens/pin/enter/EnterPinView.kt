@@ -2,6 +2,7 @@ package pro.midev.mec.presentation.ui.screens.pin.enter
 
 import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -40,7 +41,7 @@ fun EnterPinView(
         useBio = false
         BiometricDialog(object : BiometricPrompt.AuthenticationCallback() {
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                // eventConsumer(EnterPinEvent.OnBiometricConfirmed) todo
+                eventConsumer(EnterPinEvent.OnSkip)
             }
         })
     }
@@ -56,7 +57,9 @@ fun EnterPinView(
             actionsEnd = {
                 if (!state.isLoginMode)
                     Text(
-                        modifier = Modifier.padding(end = 12.dp),
+                        modifier = Modifier
+                            .padding(end = 12.dp)
+                            .clickable { },
                         text = stringResource(id = R.string.skip),
                         color = MecTheme.colors.text_primary,
                         style = MecTheme.typography.subtitle_1.semibold
@@ -72,6 +75,7 @@ fun EnterPinView(
                     state.isErrorMode && state.isRepeatMode -> R.string.pin_enter
                     !state.isErrorMode && state.isRepeatMode -> R.string.pin_confirm
                     !state.isRepeatMode && !state.isErrorMode -> R.string.pin_enter
+                    state.isLoginMode -> R.string.pin_enter
                     else -> R.string.pin_enter // todo
                 }
             ),
@@ -90,7 +94,8 @@ fun EnterPinView(
                 id = when {
                     state.isErrorMode && state.isRepeatMode -> R.string.pin_entered_wrong
                     !state.isErrorMode && state.isRepeatMode -> R.string.pin_confirm_desc
-                    !state.isRepeatMode && !state.isErrorMode -> R.string.pin_think
+                    !state.isRepeatMode && !state.isErrorMode && !state.isLoginMode -> R.string.pin_think
+                    state.isLoginMode && !state.isErrorMode -> R.string.pin_login_desc
                     else -> R.string.pin_enter // todo
                 }
             ),
@@ -112,7 +117,8 @@ fun EnterPinView(
             onInput = { eventConsumer(EnterPinEvent.OnCharAdd(it)) },
             modifier = Modifier
                 .navigationBarsPadding()
-                .padding(top = 32.dp)
+                .padding(top = 32.dp),
+            onActionClick = if (!state.isTouchIdEnabled) null else { useBio = true }
         )
 
     }

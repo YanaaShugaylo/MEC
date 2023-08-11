@@ -36,10 +36,15 @@ fun FingerPrintView(
             .navigationBarsPadding()
             .padding(horizontal = 16.dp), horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+
         Image(
             painter = painterResource(id = R.drawable.finger_image), contentDescription = "", modifier = Modifier
-                .zIndex(2F) // ну по дизайну налазит, можно было конечно вместо toolbar просто стрелочку использоваться?
+                .zIndex(2F)
+                .weight(1f) // ну по дизайну налазит, можно было конечно вместо toolbar просто стрелочку использоваться?
         )
+
+
 
         Text(
             modifier = Modifier
@@ -61,15 +66,16 @@ fun FingerPrintView(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp),
-            onClick = { /*TODO*/ },
+            onClick = { eventConsumer(FingerPrintEvent.SaveIsEnabledTouchModeEvent(true)) },
             text = stringResource(id = R.string.finger_print_screen_use_finger_print)
         )
 
         ButtonOutlined(
-            modifier = Modifier.padding(top = 16.dp)
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 24.dp)
                 .fillMaxWidth()
                 .height(56.dp),
-            onClick = { /*TODO*/ },
+            onClick = { eventConsumer(FingerPrintEvent.SaveIsEnabledTouchModeEvent(false)) },
             text = stringResource(id = R.string.finger_print_screen_use_pin)
         )
 

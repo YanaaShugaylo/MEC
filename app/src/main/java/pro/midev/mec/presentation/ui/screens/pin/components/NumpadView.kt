@@ -42,7 +42,7 @@ fun NumpadView(
     modifier: Modifier = Modifier,
     actionTextColor: Color? = null,
     actionText: String? = null,
-    onActionClick: (() -> Unit)? = null
+    onActionClick: Unit? = null
 ) {
 
     val rowsSpacing = 24.dp
@@ -85,7 +85,7 @@ fun NumpadView(
             verticalAlignment = Alignment.CenterVertically
         ) {
             onActionClick?.let {
-                NumpadIconButton(icon = R.drawable.ic_finger_print, onClick = { /*TODO*/ }, size = 64.dp)
+                NumpadIconButton(icon = R.drawable.ic_finger_print, onClick = { onActionClick }, size = 64.dp)
             } ?: NumpadEmptyButton()
             Spacer(Modifier.width(width = 32.dp))
             NumpadTextButton(value = "0", onClick = onInput)

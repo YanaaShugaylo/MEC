@@ -8,6 +8,7 @@ import cafe.adriel.voyager.androidx.AndroidScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import pro.midev.mec.presentation.ui.screens.MainScreen
 import pro.midev.mec.presentation.ui.style.MecTheme
 
 class FingerPrintScreen : AndroidScreen() {
@@ -27,6 +28,7 @@ private fun FingerPrintScreen(
 
     LaunchedEffect(action) {
         when (val act = action) {
+            FingerPrintAction.Skip -> navigator.replaceAll(MainScreen())
             else -> {}
         }
     }
@@ -39,3 +41,4 @@ private fun FingerPrintScreen(
     }
 
 }
+

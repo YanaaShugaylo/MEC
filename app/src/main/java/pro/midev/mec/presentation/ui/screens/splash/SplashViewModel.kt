@@ -1,7 +1,6 @@
 package pro.midev.mec.presentation.ui.screens.splash
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import pro.midev.mec.data.base.DataSource
@@ -33,16 +32,33 @@ class SplashViewModel(
                             getAccountUseCase()
                                 .collect { result ->
                                     when (result) {
-                                        is DataStatus.Error -> {
-                                            if (result.ex is NullPointerException)
-                                                withUI { action = SplashAction.GoToEnterPinScreen(isLoginMode = false) }
-                                            else
-                                                showErrorToast(result.ex)
-                                        }
+//                                        is DataStatus.Error -> {
+//                                            if (result.ex is NullPointerException)
+//                                                withUI { action = SplashAction.GoToEnterPinScreen(isLoginMode = false) }
+//                                            else
+//                                                showErrorToast(result.ex)
+//                                        }
 
                                         is DataStatus.Success -> {
                                             withUI {
-                                                action = SplashAction.GoToEnterPinScreen(isLoginMode = true)
+                                                pinGetUseCase().collect { result ->
+                                                    when (result) {
+                                                        is DataStatus.Error -> {
+                                                            if (result.ex is NullPointerException)
+                                                                withUI {
+                                                                    SplashAction.GoToEnterPinScreen(isLoginMode = false)
+                                                                }
+                                                            else
+                                                                showErrorToast(result.ex)
+                                                        }
+
+                                                        is DataStatus.Success -> {
+                                                            withUI { action = SplashAction.GoToEnterPinScreen(isLoginMode = true) }
+                                                        }
+
+                                                        else -> {}
+                                                    }
+                                                }
                                             }
                                         }
 

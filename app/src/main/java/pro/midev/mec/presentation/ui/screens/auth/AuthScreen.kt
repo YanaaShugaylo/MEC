@@ -36,7 +36,7 @@ private fun AuthScreen(
     LaunchedEffect(action) {
         when (action) {
             is AuthAction.GoToNextScreen -> {
-                navigator.push(EnterPinScreen())
+                navigator.push(EnterPinScreen(isLoginMode = false))
             }
 
             null -> {}

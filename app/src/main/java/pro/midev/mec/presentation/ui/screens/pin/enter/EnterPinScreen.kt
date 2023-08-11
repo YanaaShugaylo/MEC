@@ -10,6 +10,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import org.koin.core.parameter.parametersOf
 import pro.midev.mec.presentation.ui.screens.MainScreen
+import pro.midev.mec.presentation.ui.screens.auth.finger_print.FingerPrintScreen
 import pro.midev.mec.presentation.ui.style.MecTheme
 
 class EnterPinScreen(
@@ -32,13 +33,20 @@ private fun EnterPinScreen(
 
     LaunchedEffect(action) {
         when (action) {
-            EnterPinAction.OpenScreenTouchAction -> navigator.replaceAll(MainScreen())
+            EnterPinAction.OpenScreenTouchAction -> navigator.replaceAll(FingerPrintScreen())
+            EnterPinAction.OpenMainScreenAction -> navigator.replaceAll(MainScreen())
             else -> {}
         }
 
     }
 
+    LaunchedEffect(null) {
+        viewModel.obtainEvent(EnterPinEvent.OnCreate)
+    }
+
     MecTheme {
         EnterPinView(state = state, eventConsumer = viewModel::obtainEvent)
     }
+
+
 }

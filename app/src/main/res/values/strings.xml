@@ -36,6 +36,7 @@
     <string name="pin_confirm_sensor_auth_description">Коснитесь своим пальцем сенсора</string>
 
     <string name="pin_entered_wrong">Вы ввели неверный ПИН. Попробуйте снова</string>
+    <string name="pin_login_desc">Введите 6-значный код для входа в приложение</string>
 
     //finger print
     <string name="finger_print_screen_title">Вход с помощью FingerPrint</string>

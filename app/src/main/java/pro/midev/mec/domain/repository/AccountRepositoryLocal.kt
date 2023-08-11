@@ -2,6 +2,7 @@ package pro.midev.mec.domain.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.Dispatcher
 import pro.midev.mec.data.base.CompletableStatus
 import pro.midev.mec.data.base.DataStatus
 import pro.midev.mec.data.local.keystorage.UserKeyStorage
@@ -34,6 +35,24 @@ class AccountRepositoryLocal(
             DataStatus.Error(NullPointerException())
         } else {
             DataStatus.Success(pin)
+        }
+    }
+
+    suspend fun getIsTouchMode(): DataStatus<Boolean> = withContext(Dispatchers.IO) {
+        val isTouchMode = keyStorage.getIsTouchMode()
+        if (isTouchMode == null) {
+            DataStatus.Error(NullPointerException())
+        } else {
+            DataStatus.Success(isTouchMode)
+        }
+    }
+
+    suspend fun saveTouchMode(isTouchMode: Boolean): CompletableStatus = withContext(Dispatchers.IO) {
+        try {
+            keyStorage.saveIsTouchMode(isTouchMode)
+            CompletableStatus.Success
+        } catch (ex: Exception) {
+            CompletableStatus.Error(ex)
         }
     }
 

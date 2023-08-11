@@ -23,14 +23,18 @@ data class EnterPinState(
 
 sealed interface EnterPinEvent : BaseEvent {
 
-    object OnCreate : EnterPinEvent
     data class OnCharAdd(val value: String) : EnterPinEvent
     object OnCharRemove : EnterPinEvent
+    object OnSkip : EnterPinEvent
+
+    object OnCreate : EnterPinEvent
 
 }
 
 sealed interface EnterPinAction : BaseAction {
 
     object OpenScreenTouchAction : EnterPinAction
+
+    object OpenMainScreenAction : EnterPinAction
 
 }
