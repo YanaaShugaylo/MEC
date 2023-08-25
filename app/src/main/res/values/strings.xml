@@ -15,10 +15,64 @@
     <string name="error_unauthorized">Ошибка авторизации</string>
     <string name="error_undefined">Неизвестная ошибка</string>
 
+
     //Name Requests Status
     <string name="error_status">Ошибка</string>
     <string name="edit_status">Успех</string>
     <string name="warning_status">Черновик</string>
     <string name="success_status">Отказ</string>
     <string name="status_status">Статус</string>
+    <string name="title_num">№:</string>
+    //if request == null
+    <string name="title_no_request">Кажется, у Вас сейчас нет заявок на рассмотрении</string>
+    <string name="subtitle_no_request">Вы можете подать заявку на получение услуги прямо сейчас</string>
+    <string name="btn_no_request">Перейти к услугам</string>
+    //_______________________________
+
+    //Account Fragment
+    <string name="title_requests">Текущие заявки</string>
+    <string name="btn_next">Профиль пользователя</string>
+    <string name="btn_question">Часто задаваемые вопросы</string>
+    <string name="title_org_inn">ИНН:</string>
+
+    //________________________________
+
+    //Profile Fragment
+    <string name="title_router">Маршрутизатор</string>
+    <string name="description_router">Пройдите тест и получите рекомендации подходящей для Вас e-commerce программы </string>
+    <string name="description_result">Результаты теста экспортной готовности</string>
+    <string name="description_list_router">Рекомендованные Вам e-commerce площадки:</string>
+    <string name="btn_router">Пройти тест</string>
+    <string name="title_edp">Электронная цифровая подпись</string>
+    <string name="btn_edp">Профили ЭЦП</string>
+    <string name="title_profile">Личные данные</string>
+    <string name="title_org">Данные юридического лица</string>
+    <string name="title_ip">Данные индивидуальног предпринимателя</string>
+    <string name="title_documents">Документы</string>
+    // textField
+    <string name="title_last_name">Фамилия</string>
+    <string name="title_first_name">Имя</string>
+    <string name="title_middle_name">Отчество</string>
+    <string name="title_profession">Должность</string>
+    <string name="title_phone">Телефон</string>
+    <string name="title_email">Email</string>
+    <string name="title_phone_organisation">Телефон организации</string>
+    <string name="title_web_site">Официальная страница в информационно-телекоммуникационной сети "Интернет"</string>
+    <string name="title_org_name">Полное наименование организации</string>
+    <string name="title_min_name">Сокращенное наименование</string>
+    <string name="title_form_org">Организационно-правовая форма</string>
+    <string name="title_ogrn">ОГРН</string>
+    <string name="title_inn">ИНН</string>
+    <string name="title_kpp">КПП</string>
+    <string name="title_address_legal">Юридический адрес</string>
+    <string name="title_address_fact">Фактический адрес</string>
+    <string name="title_email_organisation">Адрес электронной почты организации</string>
+    <string name="title_okved">ОКВЭД</string>
+    <string name="title_okpo">ОКПО</string>
+    <string name="title_market">Текущие экспортные рынки</string>
+    <string name="title_value_export">Объем экспорта за последний отчетный год</string>
+    <string name="btn_delete">Удалить</string>
+    <string name="title_document">Документ не загружен</string>
+    <string name="title_ogrn_ip">ОГРНИП</string>
+    <string name="btn_add_document">Добавить документ</string>
 </resources>

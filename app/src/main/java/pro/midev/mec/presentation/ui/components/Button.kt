@@ -211,7 +211,7 @@ private fun ButtonPrimaryBase(
             disabledContentColor = if (isEnabled)
                 MecTheme.colors.white
             else
-                MecTheme.colors.black
+                MecTheme.colors.accent_primary
         ),
         isEnabled = isEnabled,
         iconId = iconId,
@@ -249,15 +249,6 @@ private fun ButtonBase(
         shape = MaterialTheme.shapes.large,
         border = border
     ) {
-        if (text != null) {
-            if (textStyle != null) {
-                Text(
-                    text = text,
-                    style = textStyle
-                )
-            }
-        }
-
         iconId?.let {
             if (paddingIconStart != null && paddingIconBottom != null && paddingIconEnd != null && paddingIconTop != null)
                 Icon(
@@ -269,6 +260,14 @@ private fun ButtonBase(
                     ),
                     painter = painterResource(it), contentDescription = ""
                 )
+        }
+        if (text != null) {
+            if (textStyle != null) {
+                Text(
+                    text = text,
+                    style = textStyle
+                )
+            }
         }
     }
 }

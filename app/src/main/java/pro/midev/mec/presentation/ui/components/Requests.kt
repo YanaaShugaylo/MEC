@@ -30,7 +30,7 @@ fun RequestBase(
     status: StatusRequests,
     number: String,
     date: String,
-    title: String
+    title: String,
 ) {
     Column(
         modifier = Modifier
@@ -61,7 +61,6 @@ fun RequestBase(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 0.dp, top = 16.dp, end = 0.dp)
             ) {
                 Text(
                     text = title, style = MecTheme.typography.body_1.semibold, modifier = Modifier
@@ -71,6 +70,7 @@ fun RequestBase(
                     text = number,
                     style = MecTheme.typography.caption.regular,
                     color = MecTheme.colors.text_tertiary,
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
         }
@@ -146,7 +146,7 @@ private fun RequestPreview() {
                     .width(300.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                RequestBase(status = StatusRequests.STATUS, number = "№ 1234", date = "1.01.2023", title = "Title")
+                RequestBase(status = StatusRequests.STATUS, number = "№ 1234", date = "1.01.2023", title = "Возмещение затрат на продвижение товаров на маркетплейсах")
                 RequestBase(status = StatusRequests.ERROR, number = "№ 1234", date = "1.01.2023", title = "Title")
                 RequestBase(status = StatusRequests.WARNING, number = "№ 1234", date = "1.01.2023", title = "Title")
 
