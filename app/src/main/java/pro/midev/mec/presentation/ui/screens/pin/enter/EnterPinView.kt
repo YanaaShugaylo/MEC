@@ -96,6 +96,7 @@ fun EnterPinView(
                     !state.isErrorMode && state.isRepeatMode -> R.string.pin_confirm_desc
                     !state.isRepeatMode && !state.isErrorMode && !state.isLoginMode -> R.string.pin_think
                     state.isLoginMode && !state.isErrorMode -> R.string.pin_login_desc
+                    state.isLoginMode && state.isErrorMode && !state.isRepeatMode -> R.string.pin_entered_wrong
                     else -> R.string.pin_enter // todo
                 }
             ),
@@ -118,7 +119,9 @@ fun EnterPinView(
             modifier = Modifier
                 .navigationBarsPadding()
                 .padding(top = 32.dp),
-            onActionClick = if (!state.isTouchIdEnabled) null else { useBio = true }
+            onActionClick = if (!state.isTouchIdEnabled) null else {
+                { useBio = true }
+            }
         )
 
     }
