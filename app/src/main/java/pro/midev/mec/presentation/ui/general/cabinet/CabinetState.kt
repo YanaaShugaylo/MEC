@@ -1,4 +1,4 @@
-package pro.midev.mec.presentation.ui.profile.cabinet
+package pro.midev.mec.presentation.ui.general.cabinet
 
 import androidx.compose.runtime.Immutable
 import pro.midev.mec.presentation.model.human.AccountHuman

@@ -1,4 +1,4 @@
-package pro.midev.mec.presentation.ui.profile.cabinet
+package pro.midev.mec.presentation.ui.general.cabinet
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -166,7 +166,7 @@ fun CabinetView(
 
 @Composable
 @Preview(showBackground = true)
-private fun ProfileViewPreview() {
+private fun CabinetViewPreview() {
     MecTheme {
         CabinetView(
             CabinetState(

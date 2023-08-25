@@ -1,4 +1,4 @@
-package pro.midev.mec.presentation.ui.profile.cabinet
+package pro.midev.mec.presentation.ui.general.cabinet
 
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.androidx.AndroidScreen

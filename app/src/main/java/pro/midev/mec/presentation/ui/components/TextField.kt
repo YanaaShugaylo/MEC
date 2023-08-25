@@ -53,25 +53,27 @@ fun TextFieldInput(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     singleLine: Boolean = false,
     isError: Boolean = false,
-    minHeight: Int = 55
+    minHeight: Int = 55,
+    isEnabled:Boolean = false,
+    modifier: Modifier = Modifier
+
 ) {
     val hasFocus = remember { mutableStateOf(false) }
 
     Column() {
-
         Column(
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier
+            modifier = modifier
                 .height(56.dp)
                 .fillMaxWidth()
                 .background(
-                    color = MecTheme.colors.white
+                    color = if (isEnabled) MecTheme.colors.white else MecTheme.colors.bg_secondary
                 )
                 .border(
                     width = 1.dp, color = when {
                         isError -> MecTheme.colors.accent_primary
                         hasFocus.value -> MecTheme.colors.info
-                        else -> MecTheme.colors.white
+                        else -> MecTheme.colors.bg_secondary
                     }
                 )
                 .padding(horizontal = 16.dp)
@@ -105,12 +107,9 @@ fun TextFieldInput(
                     placeHolder = placeholder,
                     visualTransformation = visualTransformation,
                     singleLine = singleLine,
-                    keyboardOptions = keyboardOptions
+                    keyboardOptions = keyboardOptions,
+                    enabled = isEnabled
                 )
-
-
-
-
                 iconEnd?.let { res ->
 
                     Spacer(
@@ -124,8 +123,6 @@ fun TextFieldInput(
                     }
 
                 }
-
-
             }
         }
 
@@ -159,10 +156,12 @@ fun MecBaseInput(
     cursorBrush: Brush = SolidColor(MecTheme.colors.accent_primary),
     singleLine: Boolean = false,
     minLines: Int = 1,
-    maxLines: Int = 10
+    maxLines: Int = 10,
+    enabled :Boolean
 ) {
     BasicTextField(
         value = text,
+        enabled = enabled,
         onValueChange = onValueChange,
         modifier = modifier,
         textStyle = textStyle,
@@ -207,12 +206,17 @@ private fun TextInputFieldPreview() {
     MecTheme {
         Column(Modifier.padding(all = 24.dp), verticalArrangement = Arrangement.spacedBy(24.dp)) {
             TextFieldInput(
-                placeholder = "Логин (телефон, email или СНИЛС)"
+                placeholder = "Логин (телефон, email или СНИЛС)", isEnabled = true
             )
 
             TextFieldInput(
                 label = "Текст",
                 text = "Логин (телефон, email или СНИЛС)"
+            )
+            TextFieldInput(
+                label = "Текст",
+                text = "Логин (телефон, email или СНИЛС)", isEnabled = true
+
             )
 
             TextFieldInput(
@@ -220,7 +224,8 @@ private fun TextInputFieldPreview() {
                 text = "Логин (телефон, email или СНИЛС)",
                 isError = true,
                 iconEnd = R.drawable.info_input_icon,
-                errorText = "Ошибка"
+                errorText = "Ошибка",
+                isEnabled = true
             )
 
         }
