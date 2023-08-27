@@ -41,7 +41,7 @@ fun EnterPinView(
         useBio = false
         BiometricDialog(object : BiometricPrompt.AuthenticationCallback() {
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                eventConsumer(EnterPinEvent.OnSkip)
+                eventConsumer(EnterPinEvent.OnTouchSuccess)
             }
         })
     }
@@ -59,23 +59,22 @@ fun EnterPinView(
                     Text(
                         modifier = Modifier
                             .padding(end = 12.dp)
-                            .clickable { },
+                            .clickable {
+                                eventConsumer(EnterPinEvent.OnSkip)
+                            },
                         text = stringResource(id = R.string.skip),
                         color = MecTheme.colors.text_primary,
                         style = MecTheme.typography.subtitle_1.semibold
                     )
             },
             onBackPressed = {},
-            hasNavigationIcon = true
+            hasNavigationIcon = false
         )
 
         Text(
             text = stringResource(
                 id = when {
-                    state.isErrorMode && state.isRepeatMode -> R.string.pin_enter
-                    !state.isErrorMode && state.isRepeatMode -> R.string.pin_confirm
-                    !state.isRepeatMode && !state.isErrorMode -> R.string.pin_enter
-                    state.isLoginMode -> R.string.pin_enter
+                    state.isRepeatMode -> R.string.pin_confirm
                     else -> R.string.pin_enter // todo
                 }
             ),

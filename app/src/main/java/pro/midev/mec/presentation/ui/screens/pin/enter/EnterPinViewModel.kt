@@ -33,27 +33,30 @@ class EnterPinViewModel(
                 onCharAdded(event.value)
             }
 
-            is EnterPinEvent.OnSkip -> action = EnterPinAction.OpenMainScreenAction
+            is EnterPinEvent.OnTouchSuccess -> action = EnterPinAction.OpenMainScreenAction
 
             is EnterPinEvent.OnCreate -> onCreate()
+
+            is EnterPinEvent.OnSkip -> skip()
 
         }
     }
 
+
     private fun onCreate() {
         viewModelScope.launch {
-            getFingerInfoUseCase().collectLatest { result ->
+            getFingerInfoUseCase().collectLatest { result -> // проверяем доступен ли отпечаток на устройстве
                 when (result) {
-
                     is DataStatus.Success -> {
 
                         if (result.data) {
-                            getIsTouchModeUseCase().collect { resultIsMode ->
+                            getIsTouchModeUseCase().collect { resultIsMode -> // далее проверяем включен ли отпечаток пальца внутри приложения
                                 when (resultIsMode) {
 
                                     is DataStatus.Success -> {
                                         if (resultIsMode.data) {
-                                            viewState = viewState.copy(isTouchIdEnabled = true)
+                                            viewState =
+                                                viewState.copy(isTouchIdEnabled = true) // если все ок,то отобржаем клавишу отпечатка
                                         }
                                     }
 
@@ -77,62 +80,76 @@ class EnterPinViewModel(
         if (newValue.length <= viewState.charCount) {
             viewState = viewState.copy(pin = newValue)
             if (newValue.length == viewState.charCount) { // проверяем на кол-во символов, дальше смотрим с зависимости от МОДА : Первый вход, Поддтверждение и Вход в приложение
-                if (viewState.isRepeatMode) {
-                    if (viewState.pin == viewState.confirmPin) {
+                when {
+                    viewState.isRepeatMode -> {
+                        if (viewState.pin == viewState.confirmPin) {
+                            viewModelScope.launch {
+                                pinSaveUseCase(viewState.confirmPin).collectLatest {
+
+                                    getFingerInfoUseCase().collectLatest { result -> // проверка есть ли отпечаток пальца, если да переходим на экран с преложением использовать отпечаток пальца
+                                        when (result) {
+
+                                            is DataStatus.Success -> {
+                                                if (result.data) action = EnterPinAction.OpenScreenTouchAction
+                                                else EnterPinAction.OpenMainScreenAction
+                                            }
+
+                                            else -> {
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            viewState =
+                                viewState.copy(pin = "", errorTrigger = LaunchEffectTrigger(), isErrorMode = true)
+                        }
+                    }
+
+                    viewState.isLoginMode -> {
                         viewModelScope.launch {
-                            pinSaveUseCase(viewState.confirmPin).collectLatest {
+                            pinGetUseCase().collect { result ->
+                                when (result) {
 
-                                getFingerInfoUseCase().collectLatest { result ->
-                                    when (result) {
-
-                                        is DataStatus.Success -> {
-                                            if (result.data) action = EnterPinAction.OpenScreenTouchAction
-                                            else EnterPinAction.OpenMainScreenAction
-                                        }
-
-                                        else -> {
-
-                                        }
-                                    }
-                                }
-                                action = EnterPinAction.OpenScreenTouchAction
-                            }
-                        }
-                    } else {
-                        viewState = viewState.copy(pin = "", errorTrigger = LaunchEffectTrigger(), isErrorMode = true)
-                    }
-                } else if (viewState.isLoginMode) {
-                    viewModelScope.launch {
-                        pinGetUseCase().collect { result ->
-                            when (result) {
-
-                                is DataStatus.Success -> {
-                                    withUI {
-                                        if (result.data == viewState.pin) {
-                                            action = EnterPinAction.OpenMainScreenAction
-                                        } else {
-                                            viewState = viewState.copy(
-                                                pin = "",
-                                                errorTrigger = LaunchEffectTrigger(),
-                                                isErrorMode = true
-                                            )
+                                    is DataStatus.Success -> {
+                                        withUI {
+                                            if (result.data == viewState.pin) {
+                                                action = EnterPinAction.OpenMainScreenAction
+                                            } else {
+                                                viewState = viewState.copy(
+                                                    pin = "",
+                                                    errorTrigger = LaunchEffectTrigger(),
+                                                    isErrorMode = true
+                                                )
+                                            }
                                         }
                                     }
-                                }
 
-                                else -> Unit
+                                    else -> Unit
+                                }
                             }
                         }
                     }
 
-                } else {
-                    viewState = viewState.copy(isRepeatMode = true, confirmPin = viewState.pin, pin = "")
+                    else -> {
+                        viewState = viewState.copy(isRepeatMode = true, confirmPin = viewState.pin, pin = "")
+                    }
                 }
             }
         }
     }
 
-    private fun onCharRemoved() {
+    private fun onCharRemoved() { // функция удаления символа
         viewState = viewState.copy(pin = viewState.pin.dropLast(1))
+    }
+
+    private fun skip() {
+        viewModelScope.launch {
+            pinSaveUseCase("").collectLatest {// сохраняем пустой пин, что будет являтся флагом
+                // что пользователь отказался использовать пин-код и сможет входить в приложение без него
+                action = EnterPinAction.OpenMainScreenAction
+            }
+        }
     }
 }

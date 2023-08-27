@@ -25,6 +25,7 @@ sealed interface EnterPinEvent : BaseEvent {
 
     data class OnCharAdd(val value: String) : EnterPinEvent
     object OnCharRemove : EnterPinEvent
+    object OnTouchSuccess : EnterPinEvent
     object OnSkip : EnterPinEvent
 
     object OnCreate : EnterPinEvent

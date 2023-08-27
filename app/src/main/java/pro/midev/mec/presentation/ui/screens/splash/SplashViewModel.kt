@@ -46,14 +46,21 @@ class SplashViewModel(
                                                         is DataStatus.Error -> {
                                                             if (result.ex is NullPointerException)
                                                                 withUI {
-                                                                    SplashAction.GoToEnterPinScreen(isLoginMode = false)
+                                                                    action =
+                                                                        SplashAction.GoToEnterPinScreen(isLoginMode = false)
                                                                 }
                                                             else
                                                                 showErrorToast(result.ex)
                                                         }
 
                                                         is DataStatus.Success -> {
-                                                            withUI { action = SplashAction.GoToEnterPinScreen(isLoginMode = true) }
+                                                            withUI {
+                                                                action = if (result.data == "") {
+                                                                    SplashAction.GoToMainScreen
+                                                                } else {
+                                                                    SplashAction.GoToEnterPinScreen(isLoginMode = true)
+                                                                }
+                                                            }
                                                         }
 
                                                         else -> {}

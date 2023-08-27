@@ -21,6 +21,8 @@ sealed interface SplashAction : BaseAction {
 
     object GoToAuthScreen : SplashAction
 
-    data class GoToEnterPinScreen(val isLoginMode : Boolean) : SplashAction
+    data class GoToEnterPinScreen(val isLoginMode: Boolean) : SplashAction
+
+    object GoToMainScreen : SplashAction
 
 }
