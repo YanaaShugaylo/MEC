@@ -28,7 +28,8 @@ val remoteStorageModule = module {
                 if (BuildConfig.DEBUG) {
                     it.addInterceptor(
                         HttpLoggingInterceptor(ApiLogger())
-                            .setLevel(HttpLoggingInterceptor.Level.BODY))
+                            .setLevel(HttpLoggingInterceptor.Level.BODY)
+                    )
                 }
             }
             .build()

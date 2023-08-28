@@ -15,6 +15,8 @@ sealed interface AuthEvent : BaseEvent {
 
     object OnCreate : AuthEvent
 
+    data class GetTokenEvent(val code : String) : AuthEvent
+
 }
 
 sealed interface AuthAction : BaseAction {

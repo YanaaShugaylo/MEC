@@ -1,4 +1,4 @@
-package pro.midev.mec.presentation.ui.screens.auth
+package pro.midev.mec.presentation.ui.screens.auth.finger_print
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,50 +8,37 @@ import cafe.adriel.voyager.androidx.AndroidScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import pro.midev.mec.presentation.ext.LocalGlobalNavigator
-import pro.midev.mec.presentation.ui.screens.pin.enter.EnterPinScreen
+import pro.midev.mec.presentation.ui.screens.MainScreen
 import pro.midev.mec.presentation.ui.style.MecTheme
-import pro.midev.mec.util.LocalBottomSheetNavigator
 
-
-class AuthScreen : AndroidScreen() {
-
+class FingerPrintScreen : AndroidScreen() {
     @Composable
     override fun Content() {
-        AuthScreen(viewModel = getScreenModel())
+        FingerPrintScreen(viewModel = getScreenModel())
     }
-
 }
 
 @Composable
-private fun AuthScreen(
-    viewModel: AuthViewModel
+private fun FingerPrintScreen(
+    viewModel: FingerPrintViewModel
 ) {
-    val bottomSheetNavigator = LocalBottomSheetNavigator.current
     val navigator = LocalNavigator.currentOrThrow
-    val rootNavigator = LocalGlobalNavigator.current
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
     val action by viewModel.viewActions.collectAsStateWithLifecycle(initialValue = null)
 
     LaunchedEffect(action) {
-        when (action) {
-            is AuthAction.GoToNextScreen -> {
-                navigator.push(EnterPinScreen(isLoginMode = false))
-            }
-
-            null -> {}
+        when (val act = action) {
+            FingerPrintAction.Skip -> navigator.replaceAll(MainScreen())
+            else -> {}
         }
-
-    }
-
-    LaunchedEffect(true) {
-        viewModel.obtainEvent(AuthEvent.OnCreate)
     }
 
     MecTheme {
-        AuthView(
+        FingerPrintView(
             state = state,
             eventConsumer = viewModel::obtainEvent
         )
     }
+
 }
+

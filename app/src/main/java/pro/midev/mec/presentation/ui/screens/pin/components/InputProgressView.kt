@@ -1,4 +1,4 @@
-package pro.midev.mec.presentation.ui.screens.pin
+package pro.midev.mec.presentation.ui.screens.pin.components
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring

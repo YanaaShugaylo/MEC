@@ -34,12 +34,16 @@ fun AuthView(
                     ViewGroup.LayoutParams.MATCH_PARENT
                 )
                 settings.javaScriptEnabled = true
+                var isNext: Boolean = true
                 webViewClient = object : WebViewClient() {
 
                     override fun onPageFinished(view: WebView?, url: String?) {
                         super.onPageFinished(view, url)
                         if (url?.contains("login?code=") == true) {
-                            val x = 5
+                            if (isNext) {
+                                eventConsumer(AuthEvent.GetTokenEvent(url.substringAfter("login?code=")))
+                                isNext = false
+                            }
                         }
                     }
                 }

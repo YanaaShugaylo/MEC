@@ -9,6 +9,9 @@ import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import pro.midev.mec.presentation.ext.LocalGlobalNavigator
+import pro.midev.mec.presentation.ui.screens.MainScreen
+import pro.midev.mec.presentation.ui.screens.auth.AuthScreen
+import pro.midev.mec.presentation.ui.screens.pin.enter.EnterPinScreen
 import pro.midev.mec.presentation.ui.style.MecTheme
 import pro.midev.mec.util.LocalBottomSheetNavigator
 
@@ -33,7 +36,20 @@ private fun SplashScreen(
 
     LaunchedEffect(action) {
         when (action) {
-            is SplashAction.GoToNextScreen -> {}
+            is SplashAction.GoToAuthScreen -> {
+                navigator.push(AuthScreen())
+            }
+
+            is SplashAction.GoToEnterPinScreen -> {
+                (action as? SplashAction.GoToEnterPinScreen)?.let {
+                    navigator.push(EnterPinScreen(it.isLoginMode))
+                }
+            }
+
+            is SplashAction.GoToMainScreen -> {
+                navigator.replaceAll(MainScreen())
+            }
+
             null -> {}
         }
 
