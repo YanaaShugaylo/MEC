@@ -1,4 +1,4 @@
-package pro.midev.mec.presentation.ui.screens.main_profile
+package pro.midev.mec.presentation.ui.screens.services
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,47 +15,50 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import pro.midev.mec.R
 import pro.midev.mec.presentation.ext.LocalGlobalNavigator
+import pro.midev.mec.presentation.ui.screens.main_profile.MainProfileView
 import pro.midev.mec.presentation.ui.style.MecTheme
 import pro.midev.mec.util.LocalBottomSheetNavigator
 
-class MainProfileScreenTab : Tab {
+class MainServicesScreenTab : Tab {
 
     override val options: TabOptions
         @Composable
         get() {
-            val title = stringResource(id = R.string.main_tab)
-            val icon = painterResource(id = R.drawable.ic_profile_tab)
+            val tabNavigator = LocalTabNavigator.current
+            val isSelected = tabNavigator.current.key == this.key // хочу сделать проверку для разных иконок
+            val title = stringResource(id = R.string.services)
+            val icon =
+                painterResource(id = if (isSelected) R.drawable.ic_services_tab else R.drawable.ic_services_tab_unselected)
 
             return remember {
                 TabOptions(
-                    index = 0u,
+                    index = 1u,
                     title = title,
                     icon = icon
                 )
             }
         }
 
-
     @Composable
     override fun Content() {
         Navigator(
-            MainProfileScreen()
+            MainServicesScreen()
         )
     }
 
 }
 
-class MainProfileScreen : AndroidScreen() {
+class MainServicesScreen : AndroidScreen() {
     @Composable
     override fun Content() {
-        MainProfileScreen(viewModel = getScreenModel())
+        MainServicesScreen(viewModel = getScreenModel())
     }
 
 }
 
 @Composable
-private fun MainProfileScreen(
-    viewModel: MainProfileViewModel
+private fun MainServicesScreen(
+    viewModel: MainServicesViewModel
 ) {
     val bottomSheetNavigator = LocalBottomSheetNavigator.current
     val navigator = LocalGlobalNavigator.current
@@ -70,7 +73,7 @@ private fun MainProfileScreen(
     }
 
     MecTheme {
-        MainProfileView(state = state, eventConsumer = viewModel::obtainEvent)
+        MainServicesView(state = state, eventConsumer = viewModel::obtainEvent)
     }
 
 

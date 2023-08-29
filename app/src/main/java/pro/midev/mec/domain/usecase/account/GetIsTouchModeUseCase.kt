@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import pro.midev.mec.data.base.DataStatus
 import pro.midev.mec.domain.base.BaseUseCase
-import pro.midev.mec.domain.repository.AccountRepositoryLocal
+import pro.midev.mec.domain.repository.account.AccountRepositoryLocal
 
 class GetIsTouchModeUseCase(
     private val localRepository: AccountRepositoryLocal

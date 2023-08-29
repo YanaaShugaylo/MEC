@@ -6,7 +6,7 @@ import pro.midev.mec.data.base.CompletableStatus
 import pro.midev.mec.data.base.DataStatus
 import pro.midev.mec.data.local.keystorage.UserKeyStorage
 import pro.midev.mec.domain.base.BaseUseCase
-import pro.midev.mec.domain.repository.AccountRepositoryRemote
+import pro.midev.mec.domain.repository.account.AccountRepositoryRemote
 
 class GetTokenUseCase(
     private val remoteRepository: AccountRepositoryRemote,

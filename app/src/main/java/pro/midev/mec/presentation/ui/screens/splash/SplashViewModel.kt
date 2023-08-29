@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import pro.midev.mec.data.base.DataSource
 import pro.midev.mec.data.base.DataStatus
-import pro.midev.mec.domain.usecase.GetAccountUseCase
+import pro.midev.mec.domain.usecase.account.GetAccountUseCase
 import pro.midev.mec.domain.usecase.account.PinGetUseCase
 import pro.midev.mec.ext.withUI
 import pro.midev.mec.presentation.base.BaseViewModel

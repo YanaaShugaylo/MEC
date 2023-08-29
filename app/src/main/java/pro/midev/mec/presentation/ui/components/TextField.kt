@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -53,7 +54,8 @@ fun TextFieldInput(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     singleLine: Boolean = false,
     isError: Boolean = false,
-    minHeight: Int = 55
+    minHeight: Int = 55,
+    heightUp: Int? = null,
 ) {
     val hasFocus = remember { mutableStateOf(false) }
 
@@ -93,8 +95,13 @@ fun TextFieldInput(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 MecBaseInput(
-                    modifier = Modifier
+                    modifier = if (heightUp == null) Modifier
                         .weight(1f)
+                        .onFocusChanged {
+                            hasFocus.value = it.hasFocus
+                        } else Modifier
+                        .weight(1f)
+                        .height(heightUp.dp)
                         .onFocusChanged {
                             hasFocus.value = it.hasFocus
                         },
@@ -119,7 +126,9 @@ fun TextFieldInput(
 
                     IconButton(modifier = Modifier.size(20.dp), onClick = { onEndIconClick() }) {
                         Icon(
-                            painter = painterResource(res), contentDescription = ""
+                            painter = painterResource(res),
+                            contentDescription = "",
+                            tint = MecTheme.colors.accent_primary
                         )
                     }
 

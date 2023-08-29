@@ -6,6 +6,7 @@ import pro.midev.mec.presentation.ui.screens.auth.AuthViewModel
 import pro.midev.mec.presentation.ui.screens.auth.finger_print.FingerPrintViewModel
 import pro.midev.mec.presentation.ui.screens.main_profile.MainProfileViewModel
 import pro.midev.mec.presentation.ui.screens.pin.enter.EnterPinViewModel
+import pro.midev.mec.presentation.ui.screens.services.MainServicesViewModel
 import pro.midev.mec.presentation.ui.screens.splash.SplashViewModel
 
 val viewModelModule = module {
@@ -19,7 +20,7 @@ val viewModelModule = module {
     }
 
     viewModel { parameters ->
-        EnterPinViewModel(get(), get(), get(), get(), parameters [0])
+        EnterPinViewModel(get(), get(), get(), get(), parameters[0])
     }
 
     viewModel {
@@ -27,6 +28,10 @@ val viewModelModule = module {
     }
 
     viewModel { MainProfileViewModel() }
+
+    viewModel {
+        MainServicesViewModel(get())
+    }
 
 }
 

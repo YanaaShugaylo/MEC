@@ -79,6 +79,80 @@ fun TextTitleToolbar(
 }
 
 @Composable
+fun TextTitleCenteredToolbar(
+    title: String = "",
+    actionsEnd: @Composable RowScope.() -> Unit = {},
+    backgroundColor: Color = MecTheme.colors.accent_primary
+) {
+    TopAppBarCenteredTitle(
+        title = {
+            Text(
+                text = title,
+                style = MecTheme.typography.headline.semibold
+            )
+        },
+        backgroundColor = backgroundColor,
+        contentColor = MecTheme.colors.white,
+        elevation = 0.dp,
+        actions = actionsEnd
+    )
+}
+
+@Composable
+private fun TopAppBarCenteredTitle(
+    title: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = MaterialTheme.colors.primarySurface,
+    contentColor: Color = contentColorFor(backgroundColor),
+    actions: @Composable RowScope.() -> Unit = {},
+    elevation: Dp = AppBarDefaults.TopAppBarElevation
+) {
+    AppBar(
+        largeToolbar = false,
+        backgroundColor,
+        contentColor,
+        elevation,
+        AppBarDefaults.ContentPadding,
+        RectangleShape,
+        modifier
+    ) {
+        Box(modifier = Modifier.fillMaxHeight()) {
+            Row() {
+                Row(
+                    Modifier
+                        .fillMaxHeight()
+                        .weight(1f)
+                        .padding(
+                            end = 0.dp,
+                        ),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    ProvideTextStyle(value = MecTheme.typography.h5.semibold) {
+                        Box {
+                            CompositionLocalProvider(
+                                LocalContentAlpha provides ContentAlpha.high,
+                                content = title
+                            )
+                        }
+                    }
+                }
+            }
+            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+                Row(
+                    Modifier
+                        .fillMaxHeight()
+                        .align(Alignment.CenterEnd),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically,
+                    content = actions
+                )
+            }
+        }
+    }
+}
+
+@Composable
 private fun TopAppBarStartedTitle(
     hasNavigationIcon: Boolean,
     title: @Composable () -> Unit,
@@ -262,6 +336,11 @@ private fun ToolbarPreview() {
                     }
 
                 }) // title-icons
+
+            TextTitleCenteredToolbar(
+                backgroundColor = MecTheme.colors.accent_primary,
+                title = "Title"
+            ) // toolbar centeredTitle
         }
 
     }

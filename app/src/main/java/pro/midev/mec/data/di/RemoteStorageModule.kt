@@ -4,11 +4,13 @@ import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import pro.midev.mec.BuildConfig
-import pro.midev.mec.data.remote.Api
+import pro.midev.mec.data.remote.ServerApi
 import pro.midev.mec.data.remote.utils.ApiLogger
 import pro.midev.mec.data.remote.utils.HeadersInterceptor
+import pro.midev.mec.data.remote.MecApi
 import pro.midev.mec.data.remote.utils.NetworkConnectionInterceptor
 import pro.midev.mec.data.remote.utils.TokenInterceptor
 import retrofit2.Retrofit
@@ -45,14 +47,24 @@ val remoteStorageModule = module {
             .client(get())
     }
 
-    single {
+    single(named("server")) {
         get<Retrofit.Builder>()
             .baseUrl(BuildConfig.SERVER_URL)
             .build()
     }
 
+    single() {
+        get<Retrofit>(named("server")).create(ServerApi::class.java)
+    }
+
+    single(named("mec")) {
+        get<Retrofit.Builder>()
+            .baseUrl(BuildConfig.MEC_URL)
+            .build()
+    }
+
     single {
-        get<Retrofit>().create(Api::class.java)
+        get<Retrofit>(named("mec")).create(MecApi::class.java)
     }
 
 }

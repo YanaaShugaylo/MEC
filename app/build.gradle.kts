@@ -45,6 +45,7 @@ android {
             versionNameSuffix = "-debug"
 
             buildConfigField("String", "SERVER_URL", "\"\thttps://mobile.moscow-export.com/api/1.0/\"")
+            buildConfigField("String", "MEC_URL", "\"\thttps://mec.htmlup.ru/api/\"")
         }
         val release by getting {
             // TODO: Enable minify
@@ -53,6 +54,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 
             buildConfigField("String", "SERVER_URL", "\"\thttps://mobile.moscow-export.com/api/1.0/\"")
+            buildConfigField("String", "MEC_URL", "\"\thttps://mec.htmlup.ru/api/\"")
         }
     }
 

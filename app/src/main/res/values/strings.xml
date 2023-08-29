@@ -44,4 +44,16 @@
     <string name="finger_print_screen_use_pin">Использовать только ПИН-код</string>
     <string name="finger_print_screen_use_finger_print">Использовать FingerPrint</string>
 
+
+    //services
+    <string name="services">Услуги</string>
+    <string name="services_unfinances">Нефинансовые</string>
+    <string name="services_finances">Финансовые</string>
+    <string name="services_recommend">Рекомендованные</string>
+    <string name="pick_up_subsidy">Подберите субсидию онлайн по ИНН</string>
+    <string name="inn">ИНН</string>
+    <string name="pick_up">Подобрать</string>
+    <string name="all_services">Все услуги</string>
+
+
 </resources>

@@ -19,6 +19,7 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import pro.midev.mec.presentation.ui.screens.main_profile.MainProfileScreenTab
+import pro.midev.mec.presentation.ui.screens.services.MainServicesScreenTab
 import pro.midev.mec.presentation.ui.style.MecTheme
 
 class MainScreen : AndroidScreen() {
@@ -40,7 +41,7 @@ class MainScreen : AndroidScreen() {
                             backgroundColor = MecTheme.colors.white
                         ) {
                             TabNavigationItem(tab = MainProfileScreenTab())
-                            TabNavigationItem(tab = MainProfileScreenTab())
+                            TabNavigationItem(tab = MainServicesScreenTab())
                             TabNavigationItem(tab = MainProfileScreenTab())
                             TabNavigationItem(tab = MainProfileScreenTab())
                             TabNavigationItem(tab = MainProfileScreenTab())
@@ -72,10 +73,7 @@ class MainScreen : AndroidScreen() {
                         modifier = Modifier.zIndex(1F),
                         painter = tab.options.icon!!,
                         contentDescription = tab.options.title,
-                        tint = if (isSelected)
-                            MecTheme.colors.text_primary
-                        else
-                            MecTheme.colors.white
+                        tint = MecTheme.colors.accent_primary
                     )
                 }
 

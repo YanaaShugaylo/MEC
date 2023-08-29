@@ -1,12 +1,12 @@
-package pro.midev.mec.domain.repository
+package pro.midev.mec.domain.repository.account
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
 import pro.midev.mec.data.base.CompletableStatus
 import pro.midev.mec.data.base.DataStatus
 import pro.midev.mec.data.local.keystorage.UserKeyStorage
 import pro.midev.mec.domain.model.AccountDomain
+import pro.midev.mec.domain.repository.account.AccountRepository
 import pro.midev.mec.ext.withIO
 
 class AccountRepositoryLocal(
