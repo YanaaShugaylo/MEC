@@ -54,7 +54,7 @@ fun MainServicesView(
 
 
     val systemUiController = rememberSystemUiController()
-    systemUiController.setSystemBarsColor(MecTheme.colors.accent_primary) // установка цвета системного статус бара
+    systemUiController.setStatusBarColor(MecTheme.colors.accent_primary) // установка цвета системного статус бара
 
     Column(
         modifier = Modifier
