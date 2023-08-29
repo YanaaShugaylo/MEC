@@ -72,6 +72,10 @@ private fun MainServicesScreen(
         }
     }
 
+    LaunchedEffect(null) {
+        viewModel.obtainEvent(MainServicesEvent.OnCreate)
+    }
+
     MecTheme {
         MainServicesView(state = state, eventConsumer = viewModel::obtainEvent)
     }

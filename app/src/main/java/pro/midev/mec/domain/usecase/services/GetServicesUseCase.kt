@@ -12,6 +12,7 @@ class GetServicesUseCase(
     private val remoteRepository: ServicesRepositoryRemote
 ) {
     suspend operator fun invoke(): Flow<DataStatus<List<ServiceHuman>>> = flow {
+        emit(DataStatus.Loading)
         when (val account = remoteRepository.getServices()) {
             is DataStatus.Success -> {
                 emit(account.mapTo { it.toHuman() })

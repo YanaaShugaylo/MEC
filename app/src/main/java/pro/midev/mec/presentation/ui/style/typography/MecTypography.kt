@@ -23,7 +23,7 @@ data class MecTypography(
     val caption: MecFont,
     val overline: MecFont,
     val nav_item: MecFont,
-    val headline: MecFont
+    val headline: MecFont,
 )
 
 private val mecFontFamily = FontFamily(
@@ -106,6 +106,6 @@ val mecTypography = MecTypography(
     headline = MecFont(
         fontSize = 17.sp,
         lineHeight = 22.sp
-    )
+    ),
 
 )

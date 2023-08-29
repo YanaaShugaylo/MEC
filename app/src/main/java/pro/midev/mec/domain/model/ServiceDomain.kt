@@ -1,16 +1,16 @@
 package pro.midev.mec.domain.model
 
-import pro.midev.mec.data.remote.model.response.ServiceResponse
+import pro.midev.mec.enum.TypeServices
 import pro.midev.mec.presentation.model.ServiceHuman
 
 data class ServiceDomain(
     val id: Long?,
     val isMec: Long?,
-    val type: String?,
+    val type: String,
     val preFeed: Boolean?,
     val invisible: Boolean?,
     val isrppId: String?,
-    val prefeedId: Long?,
+    val prefeedId: String?,
     val previewTitle: String?,
     val smallImage: String?,
     val image: String?,
@@ -21,11 +21,11 @@ data class ServiceDomain(
 fun ServiceDomain.toHuman() = ServiceHuman(
     id = id ?: 0L,
     isMec = isMec ?: 0L,
-    type = type.orEmpty(),
+    type = TypeServices.fromValue(type) ?: TypeServices.FINANCES,
     preFeed = preFeed ?: false,
     invisible = invisible ?: false,
     isrppId = isrppId.orEmpty(),
-    prefeedId = prefeedId ?: 0L,
+    prefeedId = prefeedId ?: "",
     previewTitle = previewTitle.orEmpty(),
     smallImage = smallImage.orEmpty(),
     image = image.orEmpty(),

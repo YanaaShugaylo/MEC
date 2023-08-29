@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
@@ -30,7 +31,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -61,8 +61,7 @@ fun TextFieldInput(
 
     Column() {
 
-        Column(
-            verticalArrangement = Arrangement.Center,
+        Row(
             modifier = Modifier
                 .height(56.dp)
                 .fillMaxWidth()
@@ -78,60 +77,60 @@ fun TextFieldInput(
                 )
                 .padding(horizontal = 16.dp)
         ) {
+            Column(
+                Modifier
+                    .align(Alignment.CenterVertically)
+                    .weight(1f)
+            ) {
 
-            label?.let {
-                Text(
-                    text = it,
-                    style = MecTheme.typography.overline.regular,
-                    color = when {
-                        isError -> MecTheme.colors.accent_primary
-                        hasFocus.value -> MecTheme.colors.info
-                        else -> MecTheme.colors.text_tertiary
-                    }
-                )
+                label?.let {
+                    Text(
+                        text = it,
+                        style = MecTheme.typography.overline.regular,
+                        color = when {
+                            isError -> MecTheme.colors.accent_primary
+                            hasFocus.value -> MecTheme.colors.info
+                            else -> MecTheme.colors.text_tertiary
+                        }
+                    )
+                }
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    MecBaseInput(
+                        modifier = if (heightUp == null) Modifier
+
+                            .onFocusChanged {
+                                hasFocus.value = it.hasFocus
+                            } else Modifier
+                            .height(heightUp.dp)
+                            .onFocusChanged {
+                                hasFocus.value = it.hasFocus
+                            },
+                        text = text,
+                        onValueChange = onValueChange,
+                        textStyle = MecTheme.typography.subtitle_2.regular,
+                        cursorBrush = SolidColor(MecTheme.colors.black),
+                        placeHolder = placeholder,
+                        visualTransformation = visualTransformation,
+                        singleLine = singleLine,
+                        keyboardOptions = keyboardOptions
+                    )
+                }
             }
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                MecBaseInput(
-                    modifier = if (heightUp == null) Modifier
-                        .weight(1f)
-                        .onFocusChanged {
-                            hasFocus.value = it.hasFocus
-                        } else Modifier
-                        .weight(1f)
-                        .height(heightUp.dp)
-                        .onFocusChanged {
-                            hasFocus.value = it.hasFocus
-                        },
-                    text = text,
-                    onValueChange = onValueChange,
-                    textStyle = MecTheme.typography.subtitle_2.regular,
-                    cursorBrush = SolidColor(MecTheme.colors.black),
-                    placeHolder = placeholder,
-                    visualTransformation = visualTransformation,
-                    singleLine = singleLine,
-                    keyboardOptions = keyboardOptions
-                )
+            iconEnd?.let { res ->
 
+                Row(Modifier.align(Alignment.CenterVertically)) {
 
-
-
-                iconEnd?.let { res ->
-
-                    Spacer(
-                        modifier = Modifier.width(4.dp)
-                    )
-
-                    IconButton(modifier = Modifier.size(20.dp), onClick = { onEndIconClick() }) {
+                    IconButton(modifier = Modifier.size(24.dp), onClick = { onEndIconClick() }) {
                         Icon(
                             painter = painterResource(res),
                             contentDescription = "",
                             tint = MecTheme.colors.accent_primary
                         )
                     }
-
                 }
 
 

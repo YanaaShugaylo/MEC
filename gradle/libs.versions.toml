@@ -49,6 +49,7 @@ junitPlatform = "1.9.2"
 mannodermaus = "1.3.0"
 shimmer = "1.0.4"
 biometric = "1.2.0-alpha05"
+googleAccompanist = "0.27.0"
 
 [libraries]
 androidDesugaring = {group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugaring"}
@@ -70,6 +71,7 @@ androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-juni
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidxCompose" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "androidxCompose" }
 androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "androidxCompose" }
+google-accompanist = {group = "com.google.accompanist",name="accompanist-systemuicontroller", version.ref = "googleAccompanist"}
 
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }

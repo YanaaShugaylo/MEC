@@ -1,6 +1,7 @@
 package pro.midev.mec.presentation.ui.screens.services
 
 import androidx.lifecycle.viewModelScope
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import pro.midev.mec.data.base.DataStatus
@@ -31,24 +32,32 @@ class MainServicesViewModel(
         }
     }
 
+    override fun onDispose() {
+        super.onDispose()
+    }
+
     private fun getServices() {
         viewModelScope.launch {
             getServicesUseCase().collectLatest { result ->
                 when (result) {
+
+                    is DataStatus.Loading -> {
+                        viewState = viewState.copy(isLoading = true)
+                    }
+
                     is DataStatus.Success -> {
                         withUI {
-                            val  x = result.data
-                            val t = x
+                            viewState =
+                                viewState.copy(isLoading = false, services = result.data.filter { !it.invisible }
+                                    .toImmutableList())
                         }
                     }
 
                     is DataStatus.Error -> {
-                        val x = result.ex
-                        val t = x
+                        viewState = viewState.copy(isLoading = false)
+                        showErrorToast(result.ex)
                     }
-                    else -> {
 
-                    }
                 }
             }
         }

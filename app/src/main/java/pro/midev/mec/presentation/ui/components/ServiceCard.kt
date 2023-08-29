@@ -28,7 +28,6 @@ fun MecServiceCard(
 
     Box(
         modifier = Modifier
-            .padding(16.dp)
             .size(156.dp, 156.dp)
             .background(Color.White)
             .padding(top = 8.dp, start = 8.dp)
@@ -50,7 +49,7 @@ fun MecServiceCard(
                 {
                     Text(
                         text = title,
-                        style = MecTheme.typography.overline.semibold,
+                        style = MecTheme.typography.caption.semibold,
                         color = MecTheme.colors.text_primary,
                         modifier = Modifier.padding(top = 3.dp, end = 8.dp)
                     )

@@ -1,9 +1,9 @@
 package pro.midev.mec.enum
 
 enum class TypeServices(
-    val value : String
+    val value: String
 ) {
-    FINANCES("finances"), UNFINANCES("unfinances"), RECOMMEND("recommend");
+    FINANCES("financial"), UNFINANCES("not_financial"), RECOMMEND("recommend");
 
     companion object {
         fun fromValue(value: String) = TypeServices.values().firstOrNull { it.value == value }

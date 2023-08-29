@@ -1,16 +1,17 @@
 package pro.midev.mec.presentation.model
 
 import androidx.compose.runtime.Immutable
+import pro.midev.mec.enum.TypeServices
 
 @Immutable
 class ServiceHuman(
     val id: Long,
     val isMec: Long,
-    val type: String,
+    val type: TypeServices,
     val preFeed: Boolean,
     val invisible: Boolean,
     val isrppId: String,
-    val prefeedId: Long,
+    val prefeedId: String,
     val previewTitle: String,
     val smallImage: String,
     val image: String,
@@ -21,11 +22,11 @@ class ServiceHuman(
         fun getDefault() = ServiceHuman(
             id = 0L,
             isMec = 0L,
-            type = "",
+            type = TypeServices.FINANCES,
             preFeed = false,
             invisible = false,
             isrppId = "",
-            prefeedId = 0L,
+            prefeedId = "",
             previewTitle = "",
             smallImage = "",
             image = "",

@@ -1,19 +1,27 @@
 package pro.midev.mec.presentation.ui.screens.services
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.itemsIndexed
+import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,13 +32,17 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import pro.midev.mec.R
 import pro.midev.mec.enum.TypeServices
 import pro.midev.mec.presentation.ui.components.ButtonPrimary
+import pro.midev.mec.presentation.ui.components.MecServiceCard
 import pro.midev.mec.presentation.ui.components.TextFieldInput
 import pro.midev.mec.presentation.ui.components.TextTitleCenteredToolbar
 import pro.midev.mec.presentation.ui.style.MecTheme
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainServicesView(
     state: MainServicesState,
@@ -38,7 +50,11 @@ fun MainServicesView(
 ) {
 
     val horizontalLazyListState = rememberLazyListState()
-    val verticalLazyListState = rememberLazyListState()
+    val gridState = rememberLazyStaggeredGridState()
+
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setSystemBarsColor(MecTheme.colors.accent_primary) // установка цвета системного статус бара
 
     Column(
         modifier = Modifier
@@ -71,17 +87,9 @@ fun MainServicesView(
                     isSelected = state.typeService == TypeServices.UNFINANCES
                 )
             }
-            item {
-                TypeServices(
-                    onClick = { eventConsumer(MainServicesEvent.ChangeTypeServices(TypeServices.RECOMMEND)) },
-                    text = R.string.services_recommend,
-                    isSelected = state.typeService == TypeServices.RECOMMEND,
-                    isLastPosition = true
-                )
-            }
         }
 
-        if (state.typeService == TypeServices.FINANCES)
+        AnimatedVisibility(state.typeService == TypeServices.FINANCES) {
             Column(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
@@ -115,6 +123,7 @@ fun MainServicesView(
                         .padding(top = 16.dp)
                 )
             }
+        }
 
         Text(
             text = stringResource(id = R.string.all_services),
@@ -122,16 +131,31 @@ fun MainServicesView(
             style = MecTheme.typography.h5.semibold,
             modifier = Modifier.padding(start = 16.dp, top = 56.dp, bottom = 16.dp)
         )
-
-        LazyColumn(
-            state = verticalLazyListState, modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-        ) {
-
+        if (!state.isLoading) {
+            LazyVerticalStaggeredGrid(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                state = gridState,
+                columns = StaggeredGridCells.Fixed(2),
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                verticalItemSpacing = 16.dp
+            ) {
+                itemsIndexed(items = state.services.filter { it.type == state.typeService }) { index, service ->
+                    MecServiceCard(title = service.previewTitle, photo = service.previewImage)
+                }
+            }
+        } else {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .zIndex(2f)
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(53.dp), color = MecTheme.colors.accent_primary, strokeWidth = 6.dp
+                )
+            }
         }
-
-
     }
 }
 

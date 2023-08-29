@@ -9,7 +9,7 @@ data class ServiceResponse(
     val preFeed: Boolean?,
     val invisible: Boolean?,
     val isrppId: String?,
-    val prefeedId: Long?,
+    val prefeedId: String?,
     val previewTitle: String?,
     val smallImage: String?,
     val image: String?,
@@ -20,7 +20,7 @@ data class ServiceResponse(
 fun ServiceResponse.toDomain() = ServiceDomain(
     id = id,
     isMec = isMec,
-    type = type,
+    type = type ?: "",
     preFeed = preFeed,
     invisible = invisible,
     isrppId = isrppId,
